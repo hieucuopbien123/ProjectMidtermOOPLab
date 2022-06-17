@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="806.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SceneController">
+   <left>
+      <VBox spacing="20.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
+         <children>
+            <Line endX="100.0" startX="-100.0" />
+            <Button fx:id="createUGraph" mnemonicParsing="false" onAction="#createNewGraph" style="-fx-border-radius: 20; -fx-background-color: #2574cf;" text="Create a new undirected graph" textFill="WHITE">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <font>
+                  <Font name="SansSerif Regular" size="15.0" />
+               </font></Button>
+            <Button fx:id="createDGraph" mnemonicParsing="false" onAction="#createNewDirectedGraph" style="-fx-background-color: #2574cf;" text="Create a new directed graph" textFill="WHITE">
+               <font>
+                  <Font name="SansSerif Regular" size="15.0" />
+               </font>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </Button>
+            <Line endX="100.0" startX="-100.0" />
+            <VBox spacing="5.0">
+               <children>
+                  <TextField fx:id="from" promptText="From" />
+                  <TextField fx:id="to" promptText="To" />
+                  <Button fx:id="removeE" onAction="#removeEdge" style="-fx-border-radius: 20; -fx-background-color: #2574cf;" text="Remove this edge" textFill="WHITE">
+                     <font>
+                        <Font name="SansSerif Regular" size="15.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </Button>
+               </children>
+            </VBox>
+            <Line endX="100.0" startX="-100.0" />
+            <VBox spacing="5.0">
+               <children>
+                  <TextField fx:id="DFSParam" style="-fx-background-color: white;" text="1" />
+                  <Button fx:id="DFSButton" mnemonicParsing="false" onAction="#runDFS" style="-fx-background-color: #2574cf;" text="Run DFS" textFill="WHITE">
+                     <font>
+                        <Font name="SansSerif Regular" size="15.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding></Button>
+               </children>
+            </VBox>
+            <Line endX="100.0" startX="-100.0" />
+            <Button fx:id="RunT" mnemonicParsing="false" onAction="#runTopo" style="-fx-background-color: #2574cf;" text="Run Topological Sort" textFill="WHITE">
+               <font>
+                  <Font name="SansSerif Regular" size="15.0" />
+               </font>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding></Button>
+            <Line endX="100.0" startX="-100.0" />
+            <Button fx:id="RunC" mnemonicParsing="false" onAction="#runCutVertex" style="-fx-background-color: #2574cf;" text="Run Cut Vertex" textFill="WHITE">
+               <font>
+                  <Font name="SansSerif Regular" size="15.0" />
+               </font>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding></Button>
+            <Line endX="100.0" startX="-100.0" />
+            <HBox spacing="10.0">
+               <children>
+                  <Button fx:id="nextStepButton" disable="true" mnemonicParsing="false" onAction="#runNextStep" style="-fx-background-color: #2574cf;" text="Next Step" textFill="WHITE">
+                     <font>
+                        <Font name="SansSerif Regular" size="15.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding></Button>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </VBox>
+   </left>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="noteText" text="Note: ..." textFill="#1b00e4">
+               <font>
+                  <Font name="SansSerif Bold" size="15.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" top="10.0" />
+               </padding>
+            </Label>
+            <Label fx:id="resText" textFill="#b90000">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <padding>
+                  <Insets bottom="5.0" left="10.0" />
+               </padding>
+            </Label>
+            <AnchorPane fx:id="myCanvas" onMouseClicked="#handleMouseOnCanvas" prefHeight="620.0" prefWidth="585.0" />
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

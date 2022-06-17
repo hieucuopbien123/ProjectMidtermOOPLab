@@ -1,0 +1,33 @@
+package application;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Circle;
+
+public class Controller {
+	
+	public static boolean createNew = true;
+	
+	@FXML
+	Button myButton;
+	@FXML
+	AnchorPane myCanvas;
+	
+	public void handleMouseClick(MouseEvent e) {
+		if(createNew) {
+			System.out.println("OK");
+			System.out.println(e.getX());
+//			CustomShape shape = new CustomShape();
+//			shape.setLayoutX(e.getX() - 15);
+//			shape.setLayoutY(e.getY() - 15);
+//	        myCanvas.getChildren().add(shape);
+			
+		}
+	}
+	public void toggleCreateNew() {
+		createNew = !createNew;
+	}
+}

@@ -1,0 +1,16 @@
+package application.algs;
+
+import application.components.graph.*;
+import application.components.vertext.Vertext;
+
+public abstract class Algorithm {
+	private Graph graph;
+	public Algorithm(Graph graph) {
+		super();
+		this.graph = graph;
+	}
+	public abstract void execute(Vertext startPoint);
+	public Graph getGraph() {
+		return graph;
+	}
+}

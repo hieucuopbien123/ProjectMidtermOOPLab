@@ -1,0 +1,19 @@
+package application;
+
+import java.util.List;
+
+import application.algs.Algorithm;
+import application.components.vertext.Vertex;
+import javafx.scene.shape.Line;
+
+public class Context {
+	Algorithm alg;
+	public void setupAlgorithm(Algorithm alg) {
+		this.alg = alg;
+	}
+	public void play(Algorithm alg, int start, List<Line> listEdge) {
+		Vertex startPoint = alg.getGraph().getVertext(start);
+		System.out.println("Starting from " + startPoint.getId());
+		alg.execute(startPoint, listEdge);
+	}
+}

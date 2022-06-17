@@ -1,0 +1,10 @@
+package application;
+
+import javafx.event.ActionEvent;
+
+public class Controller {
+	
+	public void handleMouseClick(ActionEvent e) {
+		System.out.println("OK");
+	}
+}

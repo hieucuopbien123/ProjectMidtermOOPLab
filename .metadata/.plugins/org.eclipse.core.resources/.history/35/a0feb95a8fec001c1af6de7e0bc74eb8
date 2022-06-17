@@ -1,0 +1,16 @@
+package application;
+
+import application.algs.Algorithm;
+import application.components.vertext.Vertex;
+
+public class Context {
+	Algorithm alg;
+	public void setupAlgorithm(Algorithm alg) {
+		this.alg = alg;
+	}
+	public void play(Algorithm alg, int start) {
+		Vertex startPoint = alg.getGraph().getVertext(start);
+		System.out.println("Starting from " + startPoint.getId());
+		alg.execute(startPoint);
+	}
+}

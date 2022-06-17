@@ -1,0 +1,50 @@
+package application;
+	
+import com.brunomnsilva.smartgraph.graph.Graph;
+import com.brunomnsilva.smartgraph.graph.GraphEdgeList;
+import com.brunomnsilva.smartgraph.graphview.SmartCircularSortedPlacementStrategy;
+import com.brunomnsilva.smartgraph.graphview.SmartGraphPanel;
+import com.brunomnsilva.smartgraph.graphview.SmartPlacementStrategy;
+
+import javafx.application.Application;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.scene.Scene;
+
+
+public class Main extends Application {
+	@Override
+	public void start(Stage primaryStage) {
+		try {
+			Graph<String, Integer> g = new GraphEdgeList<>();
+
+			g.insertVertex("1");
+			g.insertVertex("2");
+			g.insertVertex("3");
+			g.insertVertex("4");
+			g.insertVertex("5");
+
+			g.insertEdge("1", "2", 0);
+			g.insertEdge("2", "3", 1);
+
+			SmartPlacementStrategy strategy = new SmartCircularSortedPlacementStrategy();
+			SmartGraphPanel<String, Integer> graphView = new SmartGraphPanel<>(g, strategy);
+			Scene scene = new Scene(graphView, 500, 400);
+
+			graphView.setAutomaticLayout(true);
+
+			Stage stage = new Stage(StageStyle.DECORATED);
+			stage.setTitle("JavaFXGraph Visualization");
+			stage.setScene(scene);
+			stage.show();
+
+			graphView.init();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void main(String[] args) {
+		launch(args);
+	}
+}

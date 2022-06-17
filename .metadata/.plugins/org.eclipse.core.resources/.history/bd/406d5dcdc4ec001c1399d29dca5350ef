@@ -1,0 +1,69 @@
+package application.algs;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map.Entry;
+import java.util.Queue;
+
+import application.components.edge.Edge;
+import application.components.graph.*;
+import application.components.vertext.*;
+import javafx.util.Pair;
+
+public class TopologicalSort extends Algorithm {
+	
+	public TopologicalSort(Graph graph) {
+		super(graph);
+	}
+	
+	private HashMap<Vertex, Integer> in_degree;
+    private Queue<Vertex> q = new LinkedList<Vertex>();
+    private int index = 0;
+
+	@Override
+	public void setup(Vertex startPoint, HashMap<Pair<Integer, Integer>, Edge> listEdge) {
+		in_degree = new HashMap<Vertex, Integer>();
+		for (Vertex key : getGraph().getAdj().keySet()) {
+			if(getGraph().getAdj().get(key).size() == 0) {
+				in_degree.put(key, 0);
+			} else {
+				for(Vertex insideVertex: getGraph().getAdj().get(key)){
+					Integer num = in_degree.get(insideVertex);
+					if(num != null)
+						in_degree.put(insideVertex, num + 1);
+					else
+						in_degree.put(insideVertex, 1);
+				}
+			}
+		}
+		for(Entry<Vertex,Integer> data: in_degree.entrySet()) {
+			if(data.getValue() == 0) {
+				q.offer(data.getKey());
+			}
+		}
+		index = 0;
+		System.out.println(q);
+	}
+	
+	public void runNextStep(HashMap<Pair<Integer, Integer>, Edge> listEdge) {
+		System.out.println("Size: " + q.size());
+		System.out.println(in_degree);
+		if(q.size() != 0) {
+			Vertex temp = q.poll();
+			System.out.println(temp.getIdOfVertex());
+			List<Vertex> adj = getGraph().getAdj().get(temp);
+			for(int i = 0; i < adj.size(); i++) {
+				Vertex tempVertex = adj.get(i);
+				int in = in_degree.get(tempVertex) - 1;
+				System.out.println(in);
+				in_degree.put(tempVertex, in);
+				if(in == 0) {
+					q.offer(tempVertex);
+				}
+			}
+		}
+	}
+}

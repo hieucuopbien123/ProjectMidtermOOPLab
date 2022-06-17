@@ -1,0 +1,15 @@
+package application.components.vertext;
+
+import javafx.fxml.FXML;
+import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
+
+public class VertexController {
+	
+	@FXML
+	private Circle vertex;
+	@FXML
+	private Text _id;
+	
+	
+}

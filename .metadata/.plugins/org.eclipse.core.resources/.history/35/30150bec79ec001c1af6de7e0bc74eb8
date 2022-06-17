@@ -1,0 +1,10 @@
+package application.components.vertext;
+
+import javafx.scene.layout.AnchorPane;
+
+public class Vertex extends AnchorPane {
+	public Vertex() {
+		super();
+		
+	}
+}

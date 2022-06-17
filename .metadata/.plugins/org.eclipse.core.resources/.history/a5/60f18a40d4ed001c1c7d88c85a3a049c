@@ -1,0 +1,10 @@
+.vertex {
+    -fx-stroke-width: 3;
+    -fx-stroke: #61B5F1;
+    -fx-stroke-type: inside;
+    -fx-fill: #B1DFF7;
+}
+
+.vertex-label {
+    -fx-font: bold 8pt "sans-serif";
+}

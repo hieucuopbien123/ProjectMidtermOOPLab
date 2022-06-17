@@ -1,0 +1,13 @@
+package application;
+
+import javafx.fxml.FXML;
+import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
+
+public class Shape2Controller {
+	@FXML
+	Circle myCircle;
+	Text text;
+	
+	
+}

@@ -1,0 +1,17 @@
+package application.components.vertext;
+
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.layout.AnchorPane;
+
+public class Vertex extends AnchorPane {
+	VertexController controller;
+	public Vertex() {
+		super();
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("Vertex.fxml"));
+		controller = new VertexController();
+		loader.setController(controller);
+		Node n = loader.load();
+		
+	}
+}

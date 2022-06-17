@@ -1,0 +1,28 @@
+package application;
+
+import java.util.TreeSet;
+
+import javafx.fxml.FXML;
+import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
+
+public class Shape2Controller {
+	@FXML
+	Circle myCircle;
+	Text text;
+	
+	private int id = 0;
+	private static int increaseID = 0;
+	private static TreeSet<Integer> deletedId = new TreeSet<Integer>();
+	
+	public Shape2Controller(){
+		super();
+		if(deletedId.size() == 0) {
+			id = ++increaseID;
+		}else {
+			id = deletedId.first();
+			deletedId.remove(deletedId.first());
+		}
+		System.out.println("New circle created");
+	}
+}

@@ -1,0 +1,55 @@
+package application.components.vertext;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+import java.util.TreeSet;
+
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
+
+public class VertexController implements Initializable {
+	@FXML
+	private Circle vertex;
+	@FXML
+	private Text _id;
+	
+	private int id = 0;
+	private static int increaseID = 0;
+	private static TreeSet<Integer> deletedId = new TreeSet<Integer>();
+	
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		_id.setText(String.valueOf(++increaseID));
+		id = increaseID;
+		ContextMenu contextMenu = new ContextMenu();
+		MenuItem item1 = new MenuItem("Menu item 1");
+		item1.setOnAction(event -> {
+			System.out.println("Selected menu item 1");
+		});
+		MenuItem item2 = new MenuItem("Menu item 2");
+		item2.setOnAction(event -> {
+			label2.setText("Selected menu item 2");
+		});
+	}
+	public Circle getVertex() {
+		return vertex;
+	}
+	public int getId() {
+		return id;
+	}
+	public static void resetId() {
+		increaseID = 0;
+		deletedId.clear();
+	}
+	public static void addToDeletedStack(int i) {
+		deletedId.add(i);
+	}
+}

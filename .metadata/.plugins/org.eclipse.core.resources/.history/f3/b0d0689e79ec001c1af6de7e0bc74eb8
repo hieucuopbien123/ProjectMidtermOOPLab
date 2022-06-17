@@ -1,0 +1,16 @@
+package application.components.vertext;
+
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
+
+public class VertexController implements Initializable {
+	
+	@FXML
+	private Circle vertex;
+	@FXML
+	private Text _id;
+	
+	
+}

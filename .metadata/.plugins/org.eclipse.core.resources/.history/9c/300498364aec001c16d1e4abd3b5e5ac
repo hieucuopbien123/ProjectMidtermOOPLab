@@ -1,0 +1,15 @@
+package application;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.input.MouseEvent;
+
+public class Controller {
+	
+	@FXML
+	
+	public void handleMouseClick(MouseEvent e) {
+		System.out.println("OK");
+		System.out.println(e.getX());
+	}
+}

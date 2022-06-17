@@ -1,0 +1,20 @@
+package application.algs;
+
+import java.util.List;
+
+import application.components.edge.Edge;
+import application.components.graph.*;
+import application.components.vertext.*;
+import javafx.scene.shape.Line;
+
+public abstract class Algorithm {
+	private Graph graph;
+	public Algorithm(Graph graph) {
+		super();
+		this.graph = graph;
+	}
+	public abstract void execute(Vertex startPoint, List<Edge> listEdge);
+	public Graph getGraph() {
+		return graph;
+	}
+}

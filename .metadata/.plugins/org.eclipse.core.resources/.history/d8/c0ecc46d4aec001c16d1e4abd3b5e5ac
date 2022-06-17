@@ -1,0 +1,22 @@
+package application;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Circle;
+
+public class Controller {
+	
+	@FXML
+	AnchorPane myCanvas;
+	
+	public void handleMouseClick(MouseEvent e) {
+		System.out.println("OK");
+		System.out.println(e.getX());
+		Circle circle = new Circle();
+        circle.setCenterX(350);
+        circle.setCenterY(350);
+        circle.setRadius(50);
+	}
+}
