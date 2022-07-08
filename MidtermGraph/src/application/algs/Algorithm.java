@@ -21,11 +21,7 @@ public abstract class Algorithm {
 		step = new Step(pseudoCode, comment, note);
 	}
 	
-	public void buildStep(Vertex startPoint, HashMap<Pair<Integer, Integer>, Edge> listEdge) { }
-	public void buildStep(HashMap<Pair<Integer, Integer>, Edge> listEdge) { }
-	public void buildStep() { }
-//	public void setup(Vertex startPoint, HashMap<Pair<Integer, Integer>, Edge> listEdge) { }
-//	public void setup() { }
+	public abstract void buildStep();
 	public Graph getGraph() {
 		return graph;
 	}

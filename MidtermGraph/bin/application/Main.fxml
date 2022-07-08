@@ -31,6 +31,8 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </Button>
+            <Button id="GenUGraph" mnemonicParsing="false" onAction="#generateUndirectedGraph" text="Generate Undirected Graph" />
+            <Button id="GenDGraph" mnemonicParsing="false" onAction="#generateDirectedGraph" text="Generate Directed Graph" />
             <Line endX="100.0" startX="-100.0" />
             <VBox spacing="5.0">
                <children>

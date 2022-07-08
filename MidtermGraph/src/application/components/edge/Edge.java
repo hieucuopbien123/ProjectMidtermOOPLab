@@ -6,16 +6,6 @@ import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 
-//
-//import javafx.scene.shape.Line;
-//
-//public class Edge extends Line{
-//	private boolean isDirected;
-//	public Edge(boolean isDirected) {
-//		this.isDirected = isDirected;
-//	}
-//}
-
 public class Edge extends Group {
 
     private final Line line;

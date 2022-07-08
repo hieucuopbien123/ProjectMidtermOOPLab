@@ -69,6 +69,10 @@ public class SceneController implements Initializable {
 	private Button RunT;
 	@FXML
 	private Label pseudoCode;
+	@FXML
+	private Button GenDGraph;
+	@FXML
+	private Button GenUGraph;
 	
 	private Context context;
 	
@@ -76,6 +80,636 @@ public class SceneController implements Initializable {
 	
 	private Graph graph;
 	private HashMap<Pair<Integer, Integer>, Edge> listEdge = new HashMap<Pair<Integer, Integer>, Edge>();
+	
+	public void generateUndirectedGraph() {
+		createNewGraph();
+		Vertex vertex1 = new Vertex();
+		vertex1.setLayoutX(478 - 18);
+		vertex1.setLayoutY(44 - 18);
+		FadeTransition fade1 = new FadeTransition();
+		fade1.setNode(vertex1);
+		fade1.setDuration(Duration.millis(200));
+		fade1.setCycleCount(1);
+		fade1.setInterpolator(Interpolator.LINEAR);
+		fade1.setFromValue(0);
+		fade1.setToValue(1);
+		fade1.play();
+        myCanvas.getChildren().add(vertex1);
+        graph.addVertext(vertex1);
+        
+        Vertex vertex2 = new Vertex();
+        vertex2.setLayoutX(349 - 18);
+        vertex2.setLayoutY(148 - 18);
+		FadeTransition fade2 = new FadeTransition();
+		fade2.setNode(vertex2);
+		fade2.setDuration(Duration.millis(200));
+		fade2.setCycleCount(1);
+		fade2.setInterpolator(Interpolator.LINEAR);
+		fade2.setFromValue(0);
+		fade2.setToValue(1);
+		fade2.play();
+        myCanvas.getChildren().add(vertex2);
+        graph.addVertext(vertex2);
+        
+        Vertex vertex3 = new Vertex();
+        vertex3.setLayoutX(462 - 18);
+        vertex3.setLayoutY(146 - 18);
+		FadeTransition fade3 = new FadeTransition();
+		fade3.setNode(vertex3);
+		fade3.setDuration(Duration.millis(200));
+		fade3.setCycleCount(1);
+		fade3.setInterpolator(Interpolator.LINEAR);
+		fade3.setFromValue(0);
+		fade3.setToValue(1);
+		fade3.play();
+        myCanvas.getChildren().add(vertex3);
+        graph.addVertext(vertex3);
+        
+        Vertex vertex4 = new Vertex();
+        vertex4.setLayoutX(579 - 18);
+        vertex4.setLayoutY(142 - 18);
+		FadeTransition fade4 = new FadeTransition();
+		fade4.setNode(vertex4);
+		fade4.setDuration(Duration.millis(200));
+		fade4.setCycleCount(1);
+		fade4.setInterpolator(Interpolator.LINEAR);
+		fade4.setFromValue(0);
+		fade4.setToValue(1);
+		fade4.play();
+        myCanvas.getChildren().add(vertex4);
+        graph.addVertext(vertex4);
+        
+        Vertex vertex5 = new Vertex();
+        vertex5.setLayoutX(702 - 18);
+        vertex5.setLayoutY(139 - 18);
+		FadeTransition fade5 = new FadeTransition();
+		fade5.setNode(vertex5);
+		fade5.setDuration(Duration.millis(200));
+		fade5.setCycleCount(1);
+		fade5.setInterpolator(Interpolator.LINEAR);
+		fade5.setFromValue(0);
+		fade5.setToValue(1);
+		fade5.play();
+        myCanvas.getChildren().add(vertex5);
+        graph.addVertext(vertex5);
+        
+        Vertex vertex6 = new Vertex();
+        vertex6.setLayoutX(278 - 18);
+        vertex6.setLayoutY(221 - 18);
+		FadeTransition fade6 = new FadeTransition();
+		fade6.setNode(vertex6);
+		fade6.setDuration(Duration.millis(200));
+		fade6.setCycleCount(1);
+		fade6.setInterpolator(Interpolator.LINEAR);
+		fade6.setFromValue(0);
+		fade6.setToValue(1);
+		fade6.play();
+        myCanvas.getChildren().add(vertex6);
+        graph.addVertext(vertex6);
+        
+        Vertex vertex7 = new Vertex();
+        vertex7.setLayoutX(385 - 18);
+        vertex7.setLayoutY(219 - 18);
+		FadeTransition fade7 = new FadeTransition();
+		fade7.setNode(vertex7);
+		fade7.setDuration(Duration.millis(200));
+		fade7.setCycleCount(1);
+		fade7.setInterpolator(Interpolator.LINEAR);
+		fade7.setFromValue(0);
+		fade7.setToValue(1);
+		fade7.play();
+        myCanvas.getChildren().add(vertex7);
+        graph.addVertext(vertex7);
+        
+        Vertex vertex8 = new Vertex();
+        vertex8.setLayoutX(562 - 18);
+        vertex8.setLayoutY(233 - 18);
+		FadeTransition fade8 = new FadeTransition();
+		fade8.setNode(vertex8);
+		fade8.setDuration(Duration.millis(200));
+		fade8.setCycleCount(1);
+		fade8.setInterpolator(Interpolator.LINEAR);
+		fade8.setFromValue(0);
+		fade8.setToValue(1);
+		fade8.play();
+        myCanvas.getChildren().add(vertex8);
+        graph.addVertext(vertex8);
+        
+        Vertex vertex9 = new Vertex();
+        vertex9.setLayoutX(516 - 18);
+        vertex9.setLayoutY(289 - 18);
+		FadeTransition fade9 = new FadeTransition();
+		fade9.setNode(vertex9);
+		fade9.setDuration(Duration.millis(200));
+		fade9.setCycleCount(1);
+		fade9.setInterpolator(Interpolator.LINEAR);
+		fade9.setFromValue(0);
+		fade9.setToValue(1);
+		fade9.play();
+        myCanvas.getChildren().add(vertex9);
+        graph.addVertext(vertex9);
+        
+        graph.addEdge(vertex1, vertex2);
+		Edge edge = new Edge(graph.getIsDirected());
+		edge.setStartX(463.98685313876086);
+		edge.setStartY(55.29742072534003);
+		edge.setEndX(363.01314686123914);
+		edge.setEndY(136.7025792746599);
+		Pair tempPair = new Pair(vertex1.getIdOfVertex(), vertex2.getIdOfVertex());
+		listEdge.put(tempPair, edge);
+        myCanvas.getChildren().add(edge);
+        
+        graph.addEdge(vertex1, vertex3);
+		Edge edge2 = new Edge(graph.getIsDirected());
+		double a = vertex1.getLayoutX() + 18;
+		double b = vertex1.getLayoutY() + 18;
+		double c = vertex3.getLayoutX() + 18;
+		double d = vertex3.getLayoutY() + 18;
+		double dx = Math.hypot(a - c, d - b);
+		double tempX = c - a;
+		double alpha = Math.acos(tempX/dx);
+		double tempA = a + 18*Math.cos(alpha);
+		double tempB = (b-d)/(a-c)*tempA + b - (b-d)/(a-c)*a;
+		double tempC = c + 18*Math.cos(Math.PI - alpha);
+		double tempD = (b-d)/(a-c)*tempC + b - (b-d)/(a-c)*a;
+		edge2.setStartX(tempA);
+		edge2.setStartY(tempB);
+		edge2.setEndX(tempC);
+		edge2.setEndY(tempD);
+		System.out.println(tempA + " " + tempB + " " + tempC + " " + tempD);
+		Pair tempPair2 = new Pair(vertex1.getIdOfVertex(), vertex3.getIdOfVertex());
+		listEdge.put(tempPair2, edge2);
+        myCanvas.getChildren().add(edge2);
+        
+        graph.addEdge(vertex1, vertex4);
+		Edge edge3 = new Edge(graph.getIsDirected());
+		a = vertex1.getLayoutX() + 18;
+		b = vertex1.getLayoutY() + 18;
+		c = vertex4.getLayoutX() + 18;
+		d = vertex4.getLayoutY() + 18;
+		dx = Math.hypot(a - c, d - b);
+		tempX = c - a;
+		alpha = Math.acos(tempX/dx);
+		tempA = a + 18*Math.cos(alpha);
+		tempB = (b-d)/(a-c)*tempA + b - (b-d)/(a-c)*a;
+		tempC = c + 18*Math.cos(Math.PI - alpha);
+		tempD = (b-d)/(a-c)*tempC + b - (b-d)/(a-c)*a;
+		edge3.setStartX(tempA);
+		edge3.setStartY(tempB);
+		edge3.setEndX(tempC);
+		edge3.setEndY(tempD);
+		System.out.println(tempA + " " + tempB + " " + tempC + " " + tempD);
+		Pair tempPair3 = new Pair(vertex1.getIdOfVertex(), vertex4.getIdOfVertex());
+		listEdge.put(tempPair3, edge3);
+        myCanvas.getChildren().add(edge3);
+        
+        graph.addEdge(vertex1, vertex5);
+		Edge edge4 = new Edge(graph.getIsDirected());
+		a = vertex1.getLayoutX() + 18;
+		b = vertex1.getLayoutY() + 18;
+		c = vertex5.getLayoutX() + 18;
+		d = vertex5.getLayoutY() + 18;
+		dx = Math.hypot(a - c, d - b);
+		tempX = c - a;
+		alpha = Math.acos(tempX/dx);
+		tempA = a + 18*Math.cos(alpha);
+		tempB = (b-d)/(a-c)*tempA + b - (b-d)/(a-c)*a;
+		tempC = c + 18*Math.cos(Math.PI - alpha);
+		tempD = (b-d)/(a-c)*tempC + b - (b-d)/(a-c)*a;
+		edge4.setStartX(tempA);
+		edge4.setStartY(tempB);
+		edge4.setEndX(tempC);
+		edge4.setEndY(tempD);
+		System.out.println(tempA + " " + tempB + " " + tempC + " " + tempD);
+		Pair tempPair4 = new Pair(vertex1.getIdOfVertex(), vertex5.getIdOfVertex());
+		listEdge.put(tempPair4, edge4);
+        myCanvas.getChildren().add(edge4);
+        
+        graph.addEdge(vertex2, vertex6);
+		Edge edge5 = new Edge(graph.getIsDirected());
+		a = vertex2.getLayoutX() + 18;
+		b = vertex2.getLayoutY() + 18;
+		c = vertex6.getLayoutX() + 18;
+		d = vertex6.getLayoutY() + 18;
+		dx = Math.hypot(a - c, d - b);
+		tempX = c - a;
+		alpha = Math.acos(tempX/dx);
+		tempA = a + 18*Math.cos(alpha);
+		tempB = (b-d)/(a-c)*tempA + b - (b-d)/(a-c)*a;
+		tempC = c + 18*Math.cos(Math.PI - alpha);
+		tempD = (b-d)/(a-c)*tempC + b - (b-d)/(a-c)*a;
+		edge5.setStartX(tempA);
+		edge5.setStartY(tempB);
+		edge5.setEndX(tempC);
+		edge5.setEndY(tempD);
+		System.out.println(tempA + " " + tempB + " " + tempC + " " + tempD);
+		Pair tempPair5 = new Pair(vertex2.getIdOfVertex(), vertex6.getIdOfVertex());
+		listEdge.put(tempPair5, edge5);
+        myCanvas.getChildren().add(edge5);
+        
+        graph.addEdge(vertex2, vertex7);
+		Edge edge6 = new Edge(graph.getIsDirected());
+		a = vertex2.getLayoutX() + 18;
+		b = vertex2.getLayoutY() + 18;
+		c = vertex7.getLayoutX() + 18;
+		d = vertex7.getLayoutY() + 18;
+		dx = Math.hypot(a - c, d - b);
+		tempX = c - a;
+		alpha = Math.acos(tempX/dx);
+		tempA = a + 18*Math.cos(alpha);
+		tempB = (b-d)/(a-c)*tempA + b - (b-d)/(a-c)*a;
+		tempC = c + 18*Math.cos(Math.PI - alpha);
+		tempD = (b-d)/(a-c)*tempC + b - (b-d)/(a-c)*a;
+		edge6.setStartX(tempA);
+		edge6.setStartY(tempB);
+		edge6.setEndX(tempC);
+		edge6.setEndY(tempD);
+		System.out.println(tempA + " " + tempB + " " + tempC + " " + tempD);
+		Pair tempPair6 = new Pair(vertex2.getIdOfVertex(), vertex7.getIdOfVertex());
+		listEdge.put(tempPair6, edge6);
+        myCanvas.getChildren().add(edge6);
+        
+        graph.addEdge(vertex3, vertex8);
+		Edge edge7 = new Edge(graph.getIsDirected());
+		a = vertex3.getLayoutX() + 18;
+		b = vertex3.getLayoutY() + 18;
+		c = vertex8.getLayoutX() + 18;
+		d = vertex8.getLayoutY() + 18;
+		dx = Math.hypot(a - c, d - b);
+		tempX = c - a;
+		alpha = Math.acos(tempX/dx);
+		tempA = a + 18*Math.cos(alpha);
+		tempB = (b-d)/(a-c)*tempA + b - (b-d)/(a-c)*a;
+		tempC = c + 18*Math.cos(Math.PI - alpha);
+		tempD = (b-d)/(a-c)*tempC + b - (b-d)/(a-c)*a;
+		edge7.setStartX(tempA);
+		edge7.setStartY(tempB);
+		edge7.setEndX(tempC);
+		edge7.setEndY(tempD);
+		System.out.println(tempA + " " + tempB + " " + tempC + " " + tempD);
+		Pair tempPair7 = new Pair(vertex3.getIdOfVertex(), vertex8.getIdOfVertex());
+		listEdge.put(tempPair7, edge7);
+        myCanvas.getChildren().add(edge7);
+        
+        graph.addEdge(vertex4, vertex8);
+		Edge edge8 = new Edge(graph.getIsDirected());
+		a = vertex4.getLayoutX() + 18;
+		b = vertex4.getLayoutY() + 18;
+		c = vertex8.getLayoutX() + 18;
+		d = vertex8.getLayoutY() + 18;
+		dx = Math.hypot(a - c, d - b);
+		tempX = c - a;
+		alpha = Math.acos(tempX/dx);
+		tempA = a + 18*Math.cos(alpha);
+		tempB = (b-d)/(a-c)*tempA + b - (b-d)/(a-c)*a;
+		tempC = c + 18*Math.cos(Math.PI - alpha);
+		tempD = (b-d)/(a-c)*tempC + b - (b-d)/(a-c)*a;
+		edge8.setStartX(tempA);
+		edge8.setStartY(tempB);
+		edge8.setEndX(tempC);
+		edge8.setEndY(tempD);
+		System.out.println(tempA + " " + tempB + " " + tempC + " " + tempD);
+		Pair tempPair8 = new Pair(vertex4.getIdOfVertex(), vertex8.getIdOfVertex());
+		listEdge.put(tempPair8, edge8);
+        myCanvas.getChildren().add(edge8);
+        
+        graph.addEdge(vertex8, vertex9);
+		Edge edge9 = new Edge(graph.getIsDirected());
+		a = vertex8.getLayoutX() + 18;
+		b = vertex8.getLayoutY() + 18;
+		c = vertex9.getLayoutX() + 18;
+		d = vertex9.getLayoutY() + 18;
+		dx = Math.hypot(a - c, d - b);
+		tempX = c - a;
+		alpha = Math.acos(tempX/dx);
+		tempA = a + 18*Math.cos(alpha);
+		tempB = (b-d)/(a-c)*tempA + b - (b-d)/(a-c)*a;
+		tempC = c + 18*Math.cos(Math.PI - alpha);
+		tempD = (b-d)/(a-c)*tempC + b - (b-d)/(a-c)*a;
+		edge9.setStartX(tempA);
+		edge9.setStartY(tempB);
+		edge9.setEndX(tempC);
+		edge9.setEndY(tempD);
+		System.out.println(tempA + " " + tempB + " " + tempC + " " + tempD);
+		Pair tempPair9 = new Pair(vertex8.getIdOfVertex(), vertex9.getIdOfVertex());
+		listEdge.put(tempPair9, edge9);
+        myCanvas.getChildren().add(edge9);
+	}
+	
+	public void generateDirectedGraph() {
+		createNewDirectedGraph();
+		Vertex vertex1 = new Vertex();
+		vertex1.setLayoutX(478 - 18);
+		vertex1.setLayoutY(44 - 18);
+		FadeTransition fade1 = new FadeTransition();
+		fade1.setNode(vertex1);
+		fade1.setDuration(Duration.millis(200));
+		fade1.setCycleCount(1);
+		fade1.setInterpolator(Interpolator.LINEAR);
+		fade1.setFromValue(0);
+		fade1.setToValue(1);
+		fade1.play();
+        myCanvas.getChildren().add(vertex1);
+        graph.addVertext(vertex1);
+        
+        Vertex vertex2 = new Vertex();
+        vertex2.setLayoutX(349 - 18);
+        vertex2.setLayoutY(148 - 18);
+		FadeTransition fade2 = new FadeTransition();
+		fade2.setNode(vertex2);
+		fade2.setDuration(Duration.millis(200));
+		fade2.setCycleCount(1);
+		fade2.setInterpolator(Interpolator.LINEAR);
+		fade2.setFromValue(0);
+		fade2.setToValue(1);
+		fade2.play();
+        myCanvas.getChildren().add(vertex2);
+        graph.addVertext(vertex2);
+        
+        Vertex vertex3 = new Vertex();
+        vertex3.setLayoutX(462 - 18);
+        vertex3.setLayoutY(146 - 18);
+		FadeTransition fade3 = new FadeTransition();
+		fade3.setNode(vertex3);
+		fade3.setDuration(Duration.millis(200));
+		fade3.setCycleCount(1);
+		fade3.setInterpolator(Interpolator.LINEAR);
+		fade3.setFromValue(0);
+		fade3.setToValue(1);
+		fade3.play();
+        myCanvas.getChildren().add(vertex3);
+        graph.addVertext(vertex3);
+        
+        Vertex vertex4 = new Vertex();
+        vertex4.setLayoutX(579 - 18);
+        vertex4.setLayoutY(142 - 18);
+		FadeTransition fade4 = new FadeTransition();
+		fade4.setNode(vertex4);
+		fade4.setDuration(Duration.millis(200));
+		fade4.setCycleCount(1);
+		fade4.setInterpolator(Interpolator.LINEAR);
+		fade4.setFromValue(0);
+		fade4.setToValue(1);
+		fade4.play();
+        myCanvas.getChildren().add(vertex4);
+        graph.addVertext(vertex4);
+        
+        Vertex vertex5 = new Vertex();
+        vertex5.setLayoutX(702 - 18);
+        vertex5.setLayoutY(139 - 18);
+		FadeTransition fade5 = new FadeTransition();
+		fade5.setNode(vertex5);
+		fade5.setDuration(Duration.millis(200));
+		fade5.setCycleCount(1);
+		fade5.setInterpolator(Interpolator.LINEAR);
+		fade5.setFromValue(0);
+		fade5.setToValue(1);
+		fade5.play();
+        myCanvas.getChildren().add(vertex5);
+        graph.addVertext(vertex5);
+        
+        Vertex vertex6 = new Vertex();
+        vertex6.setLayoutX(278 - 18);
+        vertex6.setLayoutY(221 - 18);
+		FadeTransition fade6 = new FadeTransition();
+		fade6.setNode(vertex6);
+		fade6.setDuration(Duration.millis(200));
+		fade6.setCycleCount(1);
+		fade6.setInterpolator(Interpolator.LINEAR);
+		fade6.setFromValue(0);
+		fade6.setToValue(1);
+		fade6.play();
+        myCanvas.getChildren().add(vertex6);
+        graph.addVertext(vertex6);
+        
+        Vertex vertex7 = new Vertex();
+        vertex7.setLayoutX(385 - 18);
+        vertex7.setLayoutY(219 - 18);
+		FadeTransition fade7 = new FadeTransition();
+		fade7.setNode(vertex7);
+		fade7.setDuration(Duration.millis(200));
+		fade7.setCycleCount(1);
+		fade7.setInterpolator(Interpolator.LINEAR);
+		fade7.setFromValue(0);
+		fade7.setToValue(1);
+		fade7.play();
+        myCanvas.getChildren().add(vertex7);
+        graph.addVertext(vertex7);
+        
+        Vertex vertex8 = new Vertex();
+        vertex8.setLayoutX(562 - 18);
+        vertex8.setLayoutY(233 - 18);
+		FadeTransition fade8 = new FadeTransition();
+		fade8.setNode(vertex8);
+		fade8.setDuration(Duration.millis(200));
+		fade8.setCycleCount(1);
+		fade8.setInterpolator(Interpolator.LINEAR);
+		fade8.setFromValue(0);
+		fade8.setToValue(1);
+		fade8.play();
+        myCanvas.getChildren().add(vertex8);
+        graph.addVertext(vertex8);
+        
+        Vertex vertex9 = new Vertex();
+        vertex9.setLayoutX(516 - 18);
+        vertex9.setLayoutY(289 - 18);
+		FadeTransition fade9 = new FadeTransition();
+		fade9.setNode(vertex9);
+		fade9.setDuration(Duration.millis(200));
+		fade9.setCycleCount(1);
+		fade9.setInterpolator(Interpolator.LINEAR);
+		fade9.setFromValue(0);
+		fade9.setToValue(1);
+		fade9.play();
+        myCanvas.getChildren().add(vertex9);
+        graph.addVertext(vertex9);
+        
+        graph.addEdge(vertex1, vertex2);
+		Edge edge = new Edge(graph.getIsDirected());
+		edge.setStartX(463.98685313876086);
+		edge.setStartY(55.29742072534003);
+		edge.setEndX(363.01314686123914);
+		edge.setEndY(136.7025792746599);
+		Pair tempPair = new Pair(vertex1.getIdOfVertex(), vertex2.getIdOfVertex());
+		listEdge.put(tempPair, edge);
+        myCanvas.getChildren().add(edge);
+        
+        graph.addEdge(vertex1, vertex3);
+		Edge edge2 = new Edge(graph.getIsDirected());
+		double a = vertex1.getLayoutX() + 18;
+		double b = vertex1.getLayoutY() + 18;
+		double c = vertex3.getLayoutX() + 18;
+		double d = vertex3.getLayoutY() + 18;
+		double dx = Math.hypot(a - c, d - b);
+		double tempX = c - a;
+		double alpha = Math.acos(tempX/dx);
+		double tempA = a + 18*Math.cos(alpha);
+		double tempB = (b-d)/(a-c)*tempA + b - (b-d)/(a-c)*a;
+		double tempC = c + 18*Math.cos(Math.PI - alpha);
+		double tempD = (b-d)/(a-c)*tempC + b - (b-d)/(a-c)*a;
+		edge2.setStartX(tempA);
+		edge2.setStartY(tempB);
+		edge2.setEndX(tempC);
+		edge2.setEndY(tempD);
+		System.out.println(tempA + " " + tempB + " " + tempC + " " + tempD);
+		Pair tempPair2 = new Pair(vertex1.getIdOfVertex(), vertex3.getIdOfVertex());
+		listEdge.put(tempPair2, edge2);
+        myCanvas.getChildren().add(edge2);
+        
+        graph.addEdge(vertex1, vertex4);
+		Edge edge3 = new Edge(graph.getIsDirected());
+		a = vertex1.getLayoutX() + 18;
+		b = vertex1.getLayoutY() + 18;
+		c = vertex4.getLayoutX() + 18;
+		d = vertex4.getLayoutY() + 18;
+		dx = Math.hypot(a - c, d - b);
+		tempX = c - a;
+		alpha = Math.acos(tempX/dx);
+		tempA = a + 18*Math.cos(alpha);
+		tempB = (b-d)/(a-c)*tempA + b - (b-d)/(a-c)*a;
+		tempC = c + 18*Math.cos(Math.PI - alpha);
+		tempD = (b-d)/(a-c)*tempC + b - (b-d)/(a-c)*a;
+		edge3.setStartX(tempA);
+		edge3.setStartY(tempB);
+		edge3.setEndX(tempC);
+		edge3.setEndY(tempD);
+		System.out.println(tempA + " " + tempB + " " + tempC + " " + tempD);
+		Pair tempPair3 = new Pair(vertex1.getIdOfVertex(), vertex4.getIdOfVertex());
+		listEdge.put(tempPair3, edge3);
+        myCanvas.getChildren().add(edge3);
+        
+        graph.addEdge(vertex1, vertex5);
+		Edge edge4 = new Edge(graph.getIsDirected());
+		a = vertex1.getLayoutX() + 18;
+		b = vertex1.getLayoutY() + 18;
+		c = vertex5.getLayoutX() + 18;
+		d = vertex5.getLayoutY() + 18;
+		dx = Math.hypot(a - c, d - b);
+		tempX = c - a;
+		alpha = Math.acos(tempX/dx);
+		tempA = a + 18*Math.cos(alpha);
+		tempB = (b-d)/(a-c)*tempA + b - (b-d)/(a-c)*a;
+		tempC = c + 18*Math.cos(Math.PI - alpha);
+		tempD = (b-d)/(a-c)*tempC + b - (b-d)/(a-c)*a;
+		edge4.setStartX(tempA);
+		edge4.setStartY(tempB);
+		edge4.setEndX(tempC);
+		edge4.setEndY(tempD);
+		System.out.println(tempA + " " + tempB + " " + tempC + " " + tempD);
+		Pair tempPair4 = new Pair(vertex1.getIdOfVertex(), vertex5.getIdOfVertex());
+		listEdge.put(tempPair4, edge4);
+        myCanvas.getChildren().add(edge4);
+        
+        graph.addEdge(vertex2, vertex6);
+		Edge edge5 = new Edge(graph.getIsDirected());
+		a = vertex2.getLayoutX() + 18;
+		b = vertex2.getLayoutY() + 18;
+		c = vertex6.getLayoutX() + 18;
+		d = vertex6.getLayoutY() + 18;
+		dx = Math.hypot(a - c, d - b);
+		tempX = c - a;
+		alpha = Math.acos(tempX/dx);
+		tempA = a + 18*Math.cos(alpha);
+		tempB = (b-d)/(a-c)*tempA + b - (b-d)/(a-c)*a;
+		tempC = c + 18*Math.cos(Math.PI - alpha);
+		tempD = (b-d)/(a-c)*tempC + b - (b-d)/(a-c)*a;
+		edge5.setStartX(tempA);
+		edge5.setStartY(tempB);
+		edge5.setEndX(tempC);
+		edge5.setEndY(tempD);
+		System.out.println(tempA + " " + tempB + " " + tempC + " " + tempD);
+		Pair tempPair5 = new Pair(vertex2.getIdOfVertex(), vertex6.getIdOfVertex());
+		listEdge.put(tempPair5, edge5);
+        myCanvas.getChildren().add(edge5);
+        
+        graph.addEdge(vertex2, vertex7);
+		Edge edge6 = new Edge(graph.getIsDirected());
+		a = vertex2.getLayoutX() + 18;
+		b = vertex2.getLayoutY() + 18;
+		c = vertex7.getLayoutX() + 18;
+		d = vertex7.getLayoutY() + 18;
+		dx = Math.hypot(a - c, d - b);
+		tempX = c - a;
+		alpha = Math.acos(tempX/dx);
+		tempA = a + 18*Math.cos(alpha);
+		tempB = (b-d)/(a-c)*tempA + b - (b-d)/(a-c)*a;
+		tempC = c + 18*Math.cos(Math.PI - alpha);
+		tempD = (b-d)/(a-c)*tempC + b - (b-d)/(a-c)*a;
+		edge6.setStartX(tempA);
+		edge6.setStartY(tempB);
+		edge6.setEndX(tempC);
+		edge6.setEndY(tempD);
+		System.out.println(tempA + " " + tempB + " " + tempC + " " + tempD);
+		Pair tempPair6 = new Pair(vertex2.getIdOfVertex(), vertex7.getIdOfVertex());
+		listEdge.put(tempPair6, edge6);
+        myCanvas.getChildren().add(edge6);
+        
+        graph.addEdge(vertex3, vertex8);
+		Edge edge7 = new Edge(graph.getIsDirected());
+		a = vertex3.getLayoutX() + 18;
+		b = vertex3.getLayoutY() + 18;
+		c = vertex8.getLayoutX() + 18;
+		d = vertex8.getLayoutY() + 18;
+		dx = Math.hypot(a - c, d - b);
+		tempX = c - a;
+		alpha = Math.acos(tempX/dx);
+		tempA = a + 18*Math.cos(alpha);
+		tempB = (b-d)/(a-c)*tempA + b - (b-d)/(a-c)*a;
+		tempC = c + 18*Math.cos(Math.PI - alpha);
+		tempD = (b-d)/(a-c)*tempC + b - (b-d)/(a-c)*a;
+		edge7.setStartX(tempA);
+		edge7.setStartY(tempB);
+		edge7.setEndX(tempC);
+		edge7.setEndY(tempD);
+		System.out.println(tempA + " " + tempB + " " + tempC + " " + tempD);
+		Pair tempPair7 = new Pair(vertex3.getIdOfVertex(), vertex8.getIdOfVertex());
+		listEdge.put(tempPair7, edge7);
+        myCanvas.getChildren().add(edge7);
+        
+        graph.addEdge(vertex8, vertex4);
+		Edge edge8 = new Edge(graph.getIsDirected());
+		a = vertex8.getLayoutX() + 18;
+		b = vertex8.getLayoutY() + 18;
+		c = vertex4.getLayoutX() + 18;
+		d = vertex4.getLayoutY() + 18;
+		dx = Math.hypot(a - c, d - b);
+		tempX = c - a;
+		alpha = Math.acos(tempX/dx);
+		tempA = a + 18*Math.cos(alpha);
+		tempB = (b-d)/(a-c)*tempA + b - (b-d)/(a-c)*a;
+		tempC = c + 18*Math.cos(Math.PI - alpha);
+		tempD = (b-d)/(a-c)*tempC + b - (b-d)/(a-c)*a;
+		edge8.setStartX(tempA);
+		edge8.setStartY(tempB);
+		edge8.setEndX(tempC);
+		edge8.setEndY(tempD);
+		System.out.println(tempA + " " + tempB + " " + tempC + " " + tempD);
+		Pair tempPair8 = new Pair(vertex8.getIdOfVertex(), vertex4.getIdOfVertex());
+		listEdge.put(tempPair8, edge8);
+        myCanvas.getChildren().add(edge8);
+        
+        graph.addEdge(vertex8, vertex9);
+		Edge edge9 = new Edge(graph.getIsDirected());
+		a = vertex8.getLayoutX() + 18;
+		b = vertex8.getLayoutY() + 18;
+		c = vertex9.getLayoutX() + 18;
+		d = vertex9.getLayoutY() + 18;
+		dx = Math.hypot(a - c, d - b);
+		tempX = c - a;
+		alpha = Math.acos(tempX/dx);
+		tempA = a + 18*Math.cos(alpha);
+		tempB = (b-d)/(a-c)*tempA + b - (b-d)/(a-c)*a;
+		tempC = c + 18*Math.cos(Math.PI - alpha);
+		tempD = (b-d)/(a-c)*tempC + b - (b-d)/(a-c)*a;
+		edge9.setStartX(tempA);
+		edge9.setStartY(tempB);
+		edge9.setEndX(tempC);
+		edge9.setEndY(tempD);
+		System.out.println(tempA + " " + tempB + " " + tempC + " " + tempD);
+		Pair tempPair9 = new Pair(vertex8.getIdOfVertex(), vertex9.getIdOfVertex());
+		listEdge.put(tempPair9, edge9);
+        myCanvas.getChildren().add(edge9);
+	}
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -129,6 +763,7 @@ public class SceneController implements Initializable {
 			Vertex temp = getVertex(e);
 			if(temp == null) {
 				System.out.println(e.getX());
+				System.out.println(e.getY());
 				Vertex vertex = new Vertex();
 				vertex.setLayoutX(e.getX() - 18);
 				vertex.setLayoutY(e.getY() - 18);
@@ -208,7 +843,6 @@ public class SceneController implements Initializable {
 								tempRemoveEdge.add(pair);
 							}
 						}
-						//xóa trong vòng for gây lỗi vì sau đó duyệt đến k có -> rất đơn giản fix băng cách cho vào list r xóa 1 thể
 						for(Pair<Integer, Integer> pair: tempRemoveEdge) {
 							Edge removedEdge = listEdge.remove(pair);
 							myCanvas.getChildren().remove(removedEdge);
@@ -249,18 +883,13 @@ public class SceneController implements Initializable {
 		pause.setOnFinished(e -> DFSButton.setStyle("-fx-background-color: #2574cf"));
 		pause.play();
 		if(graph.getAdj().keySet().size() > 0) {
-//			System.out.println(graph.getAdj().keySet().size());
 			mode = 1;
 			reset();
 			nextStepButton.setDisable(false);
-			Algorithm alg = new DFS(graph, pseudoCode, resText, noteText);
+			Algorithm alg = new DFS(graph, pseudoCode, resText, noteText, listEdge, Integer.valueOf(DFSParam.getText()));
 			context = new Context();
-//			for(Pair<Integer, Integer> p: listEdge.keySet()) {
-//				System.out.println(p);
-//				listEdge.get(p).setColor();
-//			}
-			context.setupAlgorithm(alg);
-			context.play(Integer.valueOf(DFSParam.getText()), listEdge, noteText, resText);
+			context.setAlgorithm(alg);
+			context.play();
 		} else {
 			noteText.setText("Note: Your graph is empty!!");
 		}
@@ -319,7 +948,7 @@ public class SceneController implements Initializable {
 			if(graph.getIsDirected()) {
 				Algorithm alg = new TopologicalSort(graph, pseudoCode, resText, noteText);
 				context = new Context();
-				context.setupAlgorithm(alg);
+				context.setAlgorithm(alg);
 				context.play();
 				resText.setText("Result:");
 			}else {
@@ -372,10 +1001,10 @@ public class SceneController implements Initializable {
 	        noteText.setText("Note: Running cut vertex and bridge finding alg");
 			nextStepButton.setDisable(false);
 			if(!graph.getIsDirected()) {
-				Algorithm alg = new CutVertexBridgeFinding(graph, pseudoCode, resText, noteText);
+				Algorithm alg = new CutVertexBridgeFinding(graph, pseudoCode, resText, noteText, listEdge);
 				context = new Context();
-				context.setupAlgorithm(alg);
-				context.play(listEdge);
+				context.setAlgorithm(alg);
+				context.play();
 				resText.setText("Result:");
 			}else {
 				System.out.println("Cannot run cut vertext and bridge finding when it is directed graph");

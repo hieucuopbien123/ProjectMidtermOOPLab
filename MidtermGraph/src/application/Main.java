@@ -15,7 +15,7 @@ public class Main extends Application {
 			Parent root = loader.load();
 			Scene scene = new Scene(root);
 			primaryStage.setMinWidth(1200);
-			primaryStage.setMinHeight(700);
+			primaryStage.setMinHeight(800);
 			primaryStage.setTitle("Demo Graph Traversal Topic 2");
 			primaryStage.setFullScreen(true);
 			primaryStage.setScene(scene);
