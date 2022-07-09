@@ -1,0 +1,46 @@
+@startuml
+
+package stepcomponent <<Folder>> {
+    class DetailStep{
+        -qVertex: Queue<Vertex>
+        -qEdge: Queue<Edge>
+        -qCom: Queue<String>
+        -comment: Label
+        -qNote: Queue<String>
+        -note: Label
+        +DetailStep(comment: Label, note: Label)
+        +addEdge(e: Edge): void
+        +addVertex(v: Vertex): void
+        +runNextStep(): void
+        +addRes(a: String): void
+        +addNote(a: String): void
+    }
+
+    class PseudoStep{
+        -lines: List<Label>
+        -qPseudoCode: Queue<String>
+        +PseudoCStep(lines: List<Label>)
+        +setPseudoCode(index: Integer)
+        +runNextStep(): void
+        +addCode(data: int): void
+        +isEmpty(): boolean
+    }
+
+    class Step{
+        -pseudoStep: PseudoStep
+        -detailStep: DetailStep
+        +Step(lines: List<Label>, comment: Label, note: Label)
+        +addPseudoStep(step: int): void
+        +emptyPseudoCode(): boolean
+        +addEdge(e: Edge): void
+        +addVertex(v: Vertex): void
+        +runCode(): void
+        +addRes(res:String): void
+        +addNote(note: String): void
+    }
+}
+
+Step o-- DetailStep
+Step o-- PseudoStep
+
+@enduml

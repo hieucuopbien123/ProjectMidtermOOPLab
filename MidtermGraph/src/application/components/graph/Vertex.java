@@ -1,4 +1,4 @@
-package application.components.vertext;
+package application.components.graph;
 
 import java.io.IOException;
 

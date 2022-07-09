@@ -3,8 +3,8 @@ package application.step;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import application.components.edge.Edge;
-import application.components.vertext.*;
+import application.components.graph.Edge;
+import application.components.graph.Vertex;
 
 import javafx.scene.control.Label;
 

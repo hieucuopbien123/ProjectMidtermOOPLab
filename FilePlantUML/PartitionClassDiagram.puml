@@ -1,0 +1,238 @@
+@startuml
+
+' các class Application và Initializable của java có sẵn liệu có phải vẽ vào k
+
+skinparam ClassAttributeIconSize 0
+
+package application <<Folder>> {
+    class Main {
+        +start(Stage primaryStage): void
+        +{static}main(String[] args): void
+    }
+    package Main.fxml <<Frame>> {
+    }
+    class SceneController {
+        -myCanvas: AnchorPane
+        -DFSParam: TextField
+        -from: TextField
+        -to: TextField
+        -nextStepButton: Button
+        -noteText: Label
+        -resText: Label
+        -createUGraph: Button
+        -createDGraph: Button
+        -removeE: Button
+        -DFSButton: Button
+        -RunC: Button
+        -RunT: Button
+        -pseudoBox: VBox
+        -GenDGraph: Button
+        -GenUGraph: Button
+        -context: Context
+        -lines: List<Label>
+        -mode: int
+        -graph: Graph
+        -listEdge: HashMap<Pair<Integer, Integer>, Edge>
+        +initialize(arg0: URL, arg1: ResourceBundle ): void
+        +generateUndirectedGraph(): void
+        +generateDirectedGraph(): void
+        +handleMouseOnCanvas(e: MouseEvent): void
+        -getVertex(e: MouseEvent): Vertex
+        +runDFS(): void
+        +runNextStep(): void
+        +createNewGraph(): void
+        +createNewDirectedGraph(): void
+        +runTopo(): void
+        +removeEdge(): void
+        +runCutVertex(): void
+        +reset(): void
+        +resetColor(): void
+    }
+}
+
+
+package algorithm <<Folder>> {
+    abstract class Algorithm {
+        -graph: Graph
+        #step: Step
+        +Algorithm(graph: Graph, lines: List<Label>, comment: Label, note: Label)
+        +{abstract}buildStep(): void
+        +getGraph(): Graph
+        +runNextStep(): boolean
+    }
+
+    class CutVertexBridgeFinding{
+        -listEdge: HashMap<Pair<Integer, Integer>, Edge>
+        -num: HashMap<Vertex, Integer>
+        -childNum: HashMap<Vertex, Integer>
+        -low: HasHMap<Vertex, Integer>
+        -curnum: int
+        -outerLoop: List<Vertex>
+        -art: HashMap<Vertex, Boolean>
+        -dfs_child: int
+        +CutVertexBridgeFinding(graph: Graph, pseudoStep: List<Label>, comment: Label, note: Label, listEdge: HashMap<Pair<Integer, Integer>, Edge>)
+        +buildStep(): void
+        -findBridgeAndArt(u: Vertex, p: Vertex, dfs_root: Vertex, listEdge: HashMap<Pair<Integer, Integer>, Edge>): void
+    }
+
+    class DFS{
+        -listEdge: HashMap<Pair<Integer, Integer>, Edge>
+        -startPoint: Vertex
+        +DFS(graph: Graph, pseudoStep: List<Label>, comment: Label, note: Label, listEdge: HashMap<Pair<Integer, Integer>, Edge>, start: int)
+        -isVisited: HashMap<Vertex, Boolean>
+        +buildStep(): void
+        -runRecursive(sPoint: Vertex, tempEdge: Edge)
+    }
+
+    class TopologicalSort{
+        +TopologicalSort(graph: Graph, pseudoStep: List<Label>, comment: Label, note: Label)
+        -numberOfVertex: int
+        -in_degree: HashMap<Vertex, Integer>
+        -q: Queue<Vertex>
+        -index: int
+        +buildStep: void
+    }
+}
+
+package graphcomponent <<Folder>> {
+    class Edge{
+        -{static} line: Line
+        +Edge(isDirected: boolean)
+        -{static}arrowLength: double
+        -{static} arrowWidth: double
+        -Edge(line: Line, arrow1: Line, arrow2: Line, isDirected: boolean)
+        +{static}setStartX(value: double): void
+        +{static}getStartX(): double
+        +{static}startXProperty(): DoubleProperty
+        +{static}setStartY(value: double): void
+        +{static}getStartY(): double
+        +{static}startYProperty(): DoubleProperty
+        +{static}setEndX(value: double): void
+        +{static}getEndX(): double
+        +{static}endXProperty(): DoubleProperty
+        +{static}setEndY(value: double): void
+        +{static}getEndY(): double
+        +{static}endYProperty(): DoubleProperty
+        +{static}setColor(): void
+        +{static}resetColor(): void
+    }
+    class Graph{
+        -adj: HashMap<Vertex, List<Vertex>>
+        -isDirected: boolean
+        +Graph()
+        +Graph(isDirected: boolean)
+        +getIsDirected(): boolean
+        +getAdj(): HashMap<Vertex, List<Vertex>>
+        +containsEdge(from: Vertex, to: Vertex): boolean
+        +getVertex(id: int): Vertex
+        +addVertex(vertex: Vertex): void
+        +deleteVertex(id: int): void
+        +deleteVertex(v: Vertex): void
+        +addEdge(from: int, to: int): void
+        +addEdge(fromVertex: Vertex, toVertex: Vertex): void
+        -deleteEdge(from: int, to: int): void
+    }
+
+    class Vertex{
+        -controller: VertexController
+        -isChosenItem: boolean
+        -{static}numberOfChosenItem: int
+        +Vertex()
+        +getIdOfVertex(): int
+        +getVertex(): Circle
+        +changeColor(): void
+        +resetColor(): void
+        +getIsChosenItem(): boolean
+        +{static}getNumberOfChosenItem(): int
+        +{static}resetStaticVar(): void
+    }
+    package Vertex.fxml <<Frame>> {
+    }
+    class VertexController{
+        -vertex: Circle
+        -_id: Text
+        -id: int
+        -{static}increaseID: int
+        -{static}deletedId: <TreeSet<Integer>>
+        +initialize(arg0: URL, arg1: ResourceBundle): void
+        +getVertex(): Circle
+        +getId(): int
+        +{static}resetId(): void
+        +{static}addToDeletedStack(i: int): void
+    }
+}
+
+package algorithmcontext <<Folder>> {
+    class Context{
+        -alg: Algorithm
+        +setAlgorithm(alg: Algorithm): void
+        +play(): void
+        +getAlgorithm(): Algorithm
+    }
+}
+
+package stepcomponent <<Folder>> {
+    class DetailStep{
+        -qVertex: Queue<Vertex>
+        -qEdge: Queue<Edge>
+        -qCom: Queue<String>
+        -comment: Label
+        -qNote: Queue<String>
+        -note: Label
+        +DetailStep(comment: Label, note: Label)
+        +addEdge(e: Edge): void
+        +addVertex(v: Vertex): void
+        +runNextStep(): void
+        +addRes(a: String): void
+        +addNote(a: String): void
+    }
+
+    class PseudoStep{
+        -lines: List<Label>
+        -qPseudoCode: Queue<String>
+        +PseudoCStep(lines: List<Label>)
+        +setPseudoCode(index: Integer)
+        +runNextStep(): void
+        +addCode(data: int): void
+        +isEmpty(): boolean
+    }
+
+    class Step{
+        -pseudoStep: PseudoStep
+        -detailStep: DetailStep
+        +Step(lines: List<Label>, comment: Label, note: Label)
+        +addPseudoStep(step: int): void
+        +emptyPseudoCode(): boolean
+        +addEdge(e: Edge): void
+        +addVertex(v: Vertex): void
+        +runCode(): void
+        +addRes(res:String): void
+        +addNote(note: String): void
+    }
+}
+
+Vertex.fxml - VertexController
+Main - Main.fxml
+Main.fxml - SceneController
+SceneController o-- Context
+SceneController o-- Graph
+SceneController *-- Edge
+Algorithm o-- Graph
+Algorithm o-- Step
+CutVertexBridgeFinding --^ Algorithm
+CutVertexBridgeFinding o-- Edge
+CutVertexBridgeFinding *-- Vertex
+DFS --^ Algorithm
+DFS o-- Edge
+DFS o-- Vertex
+TopologicalSort --^ Algorithm
+TopologicalSort o-- Vertex
+Graph *-- Vertex
+Vertex o-- VertexController
+Context o-- Algorithm
+DetailStep *-- Vertex 
+DetailStep *-- Edge 
+Step o-- DetailStep
+Step o-- PseudoStep
+
+@enduml

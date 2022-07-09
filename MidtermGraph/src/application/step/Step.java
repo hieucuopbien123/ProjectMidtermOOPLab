@@ -1,23 +1,25 @@
 package application.step;
 
-import application.components.edge.Edge;
-import application.components.vertext.Vertex;
+import java.util.List;
+
+import application.components.graph.Edge;
+import application.components.graph.Vertex;
 import javafx.scene.control.Label;
 
 public class Step {
 	private PseudoStep pseudoStep;
 	private DetailStep detailStep;
 	
-	public Step(Label pseudoCode, Label comment, Label note) {
-		pseudoStep = new PseudoStep(pseudoCode);
+	public Step(List<Label> lines, Label comment, Label note) {
+		pseudoStep = new PseudoStep(lines);
 		detailStep = new DetailStep(comment, note);
 	}
 	
-	public void addPseudoStep(String step) {
+	public void addPseudoStep(int step) {
 		pseudoStep.addCode(step);
 	}
 	public boolean emptyPseudoCode() {
-		System.out.println(pseudoStep.isEmpty());
+		//Systemout.println(pseudoStep.isEmpty());
 		return pseudoStep.isEmpty();
 	}
 	

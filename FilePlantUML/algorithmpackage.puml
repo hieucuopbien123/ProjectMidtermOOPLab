@@ -1,0 +1,51 @@
+@startuml
+
+package algorithm <<Folder>> {
+    
+    class CutVertexBridgeFinding{
+        -listEdge: HashMap<Pair<Integer, Integer>, Edge>
+        -num: HashMap<Vertex, Integer>
+        -childNum: HashMap<Vertex, Integer>
+        -low: HasHMap<Vertex, Integer>
+        -curnum: int
+        -outerLoop: List<Vertex>
+        -art: HashMap<Vertex, Boolean>
+        -dfs_child: int
+        +CutVertexBridgeFinding(graph: Graph, pseudoStep: List<Label>, comment: Label, note: Label, listEdge: HashMap<Pair<Integer, Integer>, Edge>)
+        +buildStep(): void
+        -findBridgeAndArt(u: Vertex, p: Vertex, dfs_root: Vertex, listEdge: HashMap<Pair<Integer, Integer>, Edge>): void
+    }
+    abstract class Algorithm {
+        -graph: Graph
+        #step: Step
+        +Algorithm(graph: Graph, lines: List<Label>, comment: Label, note: Label)
+        +{abstract}buildStep(): void
+        +getGraph(): Graph
+        +runNextStep(): boolean
+    }
+
+
+    class DFS{
+        -listEdge: HashMap<Pair<Integer, Integer>, Edge>
+        -startPoint: Vertex
+        +DFS(graph: Graph, pseudoStep: List<Label>, comment: Label, note: Label, listEdge: HashMap<Pair<Integer, Integer>, Edge>, start: int)
+        -isVisited: HashMap<Vertex, Boolean>
+        +buildStep(): void
+        -runRecursive(sPoint: Vertex, tempEdge: Edge)
+    }
+
+    class TopologicalSort{
+        +TopologicalSort(graph: Graph, pseudoStep: List<Label>, comment: Label, note: Label)
+        -numberOfVertex: int
+        -in_degree: HashMap<Vertex, Integer>
+        -q: Queue<Vertex>
+        -index: int
+        +buildStep: void
+    }
+}
+
+CutVertexBridgeFinding --^ Algorithm
+DFS --^ Algorithm
+TopologicalSort --^ Algorithm
+
+@enduml

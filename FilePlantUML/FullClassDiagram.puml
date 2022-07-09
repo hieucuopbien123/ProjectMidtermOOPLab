@@ -23,12 +23,17 @@ class SceneController {
     -DFSButton: Button
     -RunC: Button
     -RunT: Button
-    -pseudoCode: Label
+    -pseudoBox: VBox
+    -GenDGraph: Button
+    -GenUGraph: Button
     -context: Context
+    -lines: List<Label>
     -mode: int
     -graph: Graph
     -listEdge: HashMap<Pair<Integer, Integer>, Edge>
     +initialize(arg0: URL, arg1: ResourceBundle ): void
+    +generateUndirectedGraph(): void
+    +generateDirectedGraph(): void
     +handleMouseOnCanvas(e: MouseEvent): void
     -getVertex(e: MouseEvent): Vertex
     +runDFS(): void
@@ -45,15 +50,14 @@ class SceneController {
 abstract class Algorithm {
     -graph: Graph
     #step: Step
-    +Algorithm(graph: Graph, pseudoCode: Label, comment: Label, note: Label)
-    +buildStep(startPoint: Vertex, listEdge: HashMap<Pair<Integer, Integer>, Edge>): void
-    +buildStep(listEdge: HashMap<Pair<Integer, Integer>, Edge>): void
-    +buildStep(): void
+    +Algorithm(graph: Graph, lines: List<Label>, comment: Label, note: Label)
+    +{abstract}buildStep(): void
     +getGraph(): Graph
-    +runNextStep(listEdge: HashMap<Pair<Integer, Integer>, Edge>, noteText: Label, resText: Label): boolean
+    +runNextStep(): boolean
 }
 
 class CutVertexBridgeFinding{
+    -listEdge: HashMap<Pair<Integer, Integer>, Edge>
     -num: HashMap<Vertex, Integer>
     -childNum: HashMap<Vertex, Integer>
     -low: HasHMap<Vertex, Integer>
@@ -61,23 +65,30 @@ class CutVertexBridgeFinding{
     -outerLoop: List<Vertex>
     -art: HashMap<Vertex, Boolean>
     -dfs_child: int
-    +buildStep(listEdge: HashMap<Pair<Integer, Integer>, Edge>): void
+    +CutVertexBridgeFinding(graph: Graph, pseudoStep: List<Label>, comment: Label, note: Label, listEdge: HashMap<Pair<Integer, Integer>, Edge>)
+    +buildStep(): void
     -findBridgeAndArt(u: Vertex, p: Vertex, dfs_root: Vertex, listEdge: HashMap<Pair<Integer, Integer>, Edge>): void
 }
 
 class DFS{
-    +DFS(graph: Graph, pseudoStep: Label, comment: Label, note: Label)
+    -listEdge: HashMap<Pair<Integer, Integer>, Edge>
+    -startPoint: Vertex
+    +DFS(graph: Graph, pseudoStep: List<Label>, comment: Label, note: Label, listEdge: HashMap<Pair<Integer, Integer>, Edge>, start: int)
     -isVisited: HashMap<Vertex, Boolean>
-    +buildStep(startPoint: Vertex, listEdge: HashMap<Pair<Integer, Integer>, Edge>): void
+    +buildStep(): void
+    -runRecursive(sPoint: Vertex, tempEdge: Edge)
 }
 
 class TopologicalSort{
-    +TopologicalSort(graph: Graph, pseudoStep: Label, comment: Label, note: Label)
+    +TopologicalSort(graph: Graph, pseudoStep: List<Label>, comment: Label, note: Label)
     -numberOfVertex: int
     -in_degree: HashMap<Vertex, Integer>
     -q: Queue<Vertex>
     -index: int
     +buildStep: void
+}
+
+package Main.fxml <<Frame>> {
 }
 
 class Edge{
@@ -132,7 +143,8 @@ class Vertex{
     +{static}getNumberOfChosenItem(): int
     +{static}resetStaticVar(): void
 }
-
+package Vertex.fxml <<Frame>> {
+}
 class VertexController{
     -vertex: Circle
     -_id: Text
@@ -148,10 +160,8 @@ class VertexController{
 
 class Context{
     -alg: Algorithm
-    +setupAlgorithm(alg: Algorithm): void
-    +play(start: int, listEdge: HashMap<Pair<Integer, Integer>, Edge>, noteText: Label, resText: Label): void
+    +setAlgorithm(alg: Algorithm): void
     +play(): void
-    +play(listEdge: HashMap<Pair<Integer, Integer>, Edge>): void
     +getAlgorithm(): Algorithm
 }
 
@@ -171,20 +181,20 @@ class DetailStep{
 }
 
 class PseudoStep{
-    -pseudoCode: Label
+    -lines: List<Label>
     -qPseudoCode: Queue<String>
-    +PseudoCStep(showLabel: Label)
-    +setPseudoCode(text: String)
+    +PseudoCStep(lines: List<Label>)
+    +setPseudoCode(index: Integer)
     +runNextStep(): void
-    +addCode(data: String): void
+    +addCode(data: int): void
     +isEmpty(): boolean
 }
 
 class Step{
     -pseudoStep: PseudoStep
     -detailStep: DetailStep
-    +Step(pseudoCode: Label, comment: Label, note: Label)
-    +addPseudoStep(step: String): void
+    +Step(lines: List<Label>, comment: Label, note: Label)
+    +addPseudoStep(step: int): void
     +emptyPseudoCode(): boolean
     +addEdge(e: Edge): void
     +addVertex(v: Vertex): void
@@ -193,31 +203,33 @@ class Step{
     +addNote(note: String): void
 }
 
-DFS --^ Algorithm
-TopologicalSort --^ Algorithm
-CutVertexBridgeFinding --^ Algorithm
-Algorithm ..> Vertex
-Algorithm ..> Edge
-' Graph --^ Vertex
-Context ..> Edge
-Step ..> Edge
-Step ..> Vertex
+Vertex.fxml - VertexController
+Main - Main.fxml
+Main.fxml - SceneController
 SceneController o-- Context
 SceneController o-- Graph
 SceneController *-- Edge
 Algorithm o-- Graph
 Algorithm o-- Step
+CutVertexBridgeFinding --^ Algorithm
+CutVertexBridgeFinding o-- Edge
 CutVertexBridgeFinding *-- Vertex
-DFS *-- Vertex
+CutVertexBridgeFinding .. Graph
+DFS --^ Algorithm
+DFS o-- Edge
+DFS o-- Vertex
+DFS .. Graph
+TopologicalSort --^ Algorithm
 TopologicalSort o-- Vertex
+TopologicalSort .. Graph
 Graph *-- Vertex
 Vertex o-- VertexController
 Context o-- Algorithm
-DetailStep *-- Vertex
-DetailStep *-- Edge
+DetailStep *-- Vertex 
+DetailStep *-- Edge 
 Step o-- DetailStep
 Step o-- PseudoStep
+Step .. Edge
+Step .. Vertex
 
 @enduml
-
-

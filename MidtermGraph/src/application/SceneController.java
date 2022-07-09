@@ -12,10 +12,10 @@ import application.algs.Algorithm;
 import application.algs.CutVertexBridgeFinding;
 import application.algs.DFS;
 import application.algs.TopologicalSort;
-import application.components.edge.Edge;
+import application.components.graph.Edge;
 import application.components.graph.Graph;
-import application.components.vertext.Vertex;
-import application.components.vertext.VertexController;
+import application.components.graph.Vertex;
+import application.components.graph.VertexController;
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
@@ -32,6 +32,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
@@ -40,7 +41,6 @@ import javafx.util.Duration;
 import javafx.util.Pair;
 
 public class SceneController implements Initializable {
-	
 	@FXML
 	private AnchorPane myCanvas;
 	@FXML
@@ -68,20 +68,21 @@ public class SceneController implements Initializable {
 	@FXML
 	private Button RunT;
 	@FXML
-	private Label pseudoCode;
+	private VBox pseudoBox;
 	@FXML
 	private Button GenDGraph;
 	@FXML
 	private Button GenUGraph;
 	
 	private Context context;
-	
+    private List<Label> lines;
 	private int mode = 0;
 	
 	private Graph graph;
 	private HashMap<Pair<Integer, Integer>, Edge> listEdge = new HashMap<Pair<Integer, Integer>, Edge>();
 	
 	public void generateUndirectedGraph() {
+		reset();
 		createNewGraph();
 		Vertex vertex1 = new Vertex();
 		vertex1.setLayoutX(478 - 18);
@@ -236,7 +237,7 @@ public class SceneController implements Initializable {
 		edge2.setStartY(tempB);
 		edge2.setEndX(tempC);
 		edge2.setEndY(tempD);
-		System.out.println(tempA + " " + tempB + " " + tempC + " " + tempD);
+//		//Systemout.println(tempA + " " + tempB + " " + tempC + " " + tempD);
 		Pair tempPair2 = new Pair(vertex1.getIdOfVertex(), vertex3.getIdOfVertex());
 		listEdge.put(tempPair2, edge2);
         myCanvas.getChildren().add(edge2);
@@ -258,7 +259,7 @@ public class SceneController implements Initializable {
 		edge3.setStartY(tempB);
 		edge3.setEndX(tempC);
 		edge3.setEndY(tempD);
-		System.out.println(tempA + " " + tempB + " " + tempC + " " + tempD);
+//		//Systemout.println(tempA + " " + tempB + " " + tempC + " " + tempD);
 		Pair tempPair3 = new Pair(vertex1.getIdOfVertex(), vertex4.getIdOfVertex());
 		listEdge.put(tempPair3, edge3);
         myCanvas.getChildren().add(edge3);
@@ -280,7 +281,7 @@ public class SceneController implements Initializable {
 		edge4.setStartY(tempB);
 		edge4.setEndX(tempC);
 		edge4.setEndY(tempD);
-		System.out.println(tempA + " " + tempB + " " + tempC + " " + tempD);
+//		//Systemout.println(tempA + " " + tempB + " " + tempC + " " + tempD);
 		Pair tempPair4 = new Pair(vertex1.getIdOfVertex(), vertex5.getIdOfVertex());
 		listEdge.put(tempPair4, edge4);
         myCanvas.getChildren().add(edge4);
@@ -302,7 +303,7 @@ public class SceneController implements Initializable {
 		edge5.setStartY(tempB);
 		edge5.setEndX(tempC);
 		edge5.setEndY(tempD);
-		System.out.println(tempA + " " + tempB + " " + tempC + " " + tempD);
+//		//Systemout.println(tempA + " " + tempB + " " + tempC + " " + tempD);
 		Pair tempPair5 = new Pair(vertex2.getIdOfVertex(), vertex6.getIdOfVertex());
 		listEdge.put(tempPair5, edge5);
         myCanvas.getChildren().add(edge5);
@@ -324,7 +325,7 @@ public class SceneController implements Initializable {
 		edge6.setStartY(tempB);
 		edge6.setEndX(tempC);
 		edge6.setEndY(tempD);
-		System.out.println(tempA + " " + tempB + " " + tempC + " " + tempD);
+		//Systemout.println(tempA + " " + tempB + " " + tempC + " " + tempD);
 		Pair tempPair6 = new Pair(vertex2.getIdOfVertex(), vertex7.getIdOfVertex());
 		listEdge.put(tempPair6, edge6);
         myCanvas.getChildren().add(edge6);
@@ -346,7 +347,7 @@ public class SceneController implements Initializable {
 		edge7.setStartY(tempB);
 		edge7.setEndX(tempC);
 		edge7.setEndY(tempD);
-		System.out.println(tempA + " " + tempB + " " + tempC + " " + tempD);
+		//Systemout.println(tempA + " " + tempB + " " + tempC + " " + tempD);
 		Pair tempPair7 = new Pair(vertex3.getIdOfVertex(), vertex8.getIdOfVertex());
 		listEdge.put(tempPair7, edge7);
         myCanvas.getChildren().add(edge7);
@@ -368,7 +369,7 @@ public class SceneController implements Initializable {
 		edge8.setStartY(tempB);
 		edge8.setEndX(tempC);
 		edge8.setEndY(tempD);
-		System.out.println(tempA + " " + tempB + " " + tempC + " " + tempD);
+		//Systemout.println(tempA + " " + tempB + " " + tempC + " " + tempD);
 		Pair tempPair8 = new Pair(vertex4.getIdOfVertex(), vertex8.getIdOfVertex());
 		listEdge.put(tempPair8, edge8);
         myCanvas.getChildren().add(edge8);
@@ -390,13 +391,14 @@ public class SceneController implements Initializable {
 		edge9.setStartY(tempB);
 		edge9.setEndX(tempC);
 		edge9.setEndY(tempD);
-		System.out.println(tempA + " " + tempB + " " + tempC + " " + tempD);
+		//Systemout.println(tempA + " " + tempB + " " + tempC + " " + tempD);
 		Pair tempPair9 = new Pair(vertex8.getIdOfVertex(), vertex9.getIdOfVertex());
 		listEdge.put(tempPair9, edge9);
         myCanvas.getChildren().add(edge9);
 	}
 	
 	public void generateDirectedGraph() {
+		reset();
 		createNewDirectedGraph();
 		Vertex vertex1 = new Vertex();
 		vertex1.setLayoutX(478 - 18);
@@ -551,7 +553,7 @@ public class SceneController implements Initializable {
 		edge2.setStartY(tempB);
 		edge2.setEndX(tempC);
 		edge2.setEndY(tempD);
-		System.out.println(tempA + " " + tempB + " " + tempC + " " + tempD);
+//		//Systemout.println(tempA + " " + tempB + " " + tempC + " " + tempD);
 		Pair tempPair2 = new Pair(vertex1.getIdOfVertex(), vertex3.getIdOfVertex());
 		listEdge.put(tempPair2, edge2);
         myCanvas.getChildren().add(edge2);
@@ -573,7 +575,7 @@ public class SceneController implements Initializable {
 		edge3.setStartY(tempB);
 		edge3.setEndX(tempC);
 		edge3.setEndY(tempD);
-		System.out.println(tempA + " " + tempB + " " + tempC + " " + tempD);
+		//Systemout.println(tempA + " " + tempB + " " + tempC + " " + tempD);
 		Pair tempPair3 = new Pair(vertex1.getIdOfVertex(), vertex4.getIdOfVertex());
 		listEdge.put(tempPair3, edge3);
         myCanvas.getChildren().add(edge3);
@@ -595,7 +597,7 @@ public class SceneController implements Initializable {
 		edge4.setStartY(tempB);
 		edge4.setEndX(tempC);
 		edge4.setEndY(tempD);
-		System.out.println(tempA + " " + tempB + " " + tempC + " " + tempD);
+		//Systemout.println(tempA + " " + tempB + " " + tempC + " " + tempD);
 		Pair tempPair4 = new Pair(vertex1.getIdOfVertex(), vertex5.getIdOfVertex());
 		listEdge.put(tempPair4, edge4);
         myCanvas.getChildren().add(edge4);
@@ -617,7 +619,7 @@ public class SceneController implements Initializable {
 		edge5.setStartY(tempB);
 		edge5.setEndX(tempC);
 		edge5.setEndY(tempD);
-		System.out.println(tempA + " " + tempB + " " + tempC + " " + tempD);
+		//Systemout.println(tempA + " " + tempB + " " + tempC + " " + tempD);
 		Pair tempPair5 = new Pair(vertex2.getIdOfVertex(), vertex6.getIdOfVertex());
 		listEdge.put(tempPair5, edge5);
         myCanvas.getChildren().add(edge5);
@@ -639,7 +641,7 @@ public class SceneController implements Initializable {
 		edge6.setStartY(tempB);
 		edge6.setEndX(tempC);
 		edge6.setEndY(tempD);
-		System.out.println(tempA + " " + tempB + " " + tempC + " " + tempD);
+		//Systemout.println(tempA + " " + tempB + " " + tempC + " " + tempD);
 		Pair tempPair6 = new Pair(vertex2.getIdOfVertex(), vertex7.getIdOfVertex());
 		listEdge.put(tempPair6, edge6);
         myCanvas.getChildren().add(edge6);
@@ -661,7 +663,7 @@ public class SceneController implements Initializable {
 		edge7.setStartY(tempB);
 		edge7.setEndX(tempC);
 		edge7.setEndY(tempD);
-		System.out.println(tempA + " " + tempB + " " + tempC + " " + tempD);
+		//Systemout.println(tempA + " " + tempB + " " + tempC + " " + tempD);
 		Pair tempPair7 = new Pair(vertex3.getIdOfVertex(), vertex8.getIdOfVertex());
 		listEdge.put(tempPair7, edge7);
         myCanvas.getChildren().add(edge7);
@@ -683,7 +685,7 @@ public class SceneController implements Initializable {
 		edge8.setStartY(tempB);
 		edge8.setEndX(tempC);
 		edge8.setEndY(tempD);
-		System.out.println(tempA + " " + tempB + " " + tempC + " " + tempD);
+		//Systemout.println(tempA + " " + tempB + " " + tempC + " " + tempD);
 		Pair tempPair8 = new Pair(vertex8.getIdOfVertex(), vertex4.getIdOfVertex());
 		listEdge.put(tempPair8, edge8);
         myCanvas.getChildren().add(edge8);
@@ -705,7 +707,7 @@ public class SceneController implements Initializable {
 		edge9.setStartY(tempB);
 		edge9.setEndX(tempC);
 		edge9.setEndY(tempD);
-		System.out.println(tempA + " " + tempB + " " + tempC + " " + tempD);
+		//Systemout.println(tempA + " " + tempB + " " + tempC + " " + tempD);
 		Pair tempPair9 = new Pair(vertex8.getIdOfVertex(), vertex9.getIdOfVertex());
 		listEdge.put(tempPair9, edge9);
         myCanvas.getChildren().add(edge9);
@@ -713,6 +715,14 @@ public class SceneController implements Initializable {
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		lines = new ArrayList<>();
+        for (int i = 1; i <= 8; i++) {
+            Label label = new Label("");
+//            label.setStyle("-fx-text-fill: #1b00e4; -fx-font-size: 14px; -fx-font-family: SansSerif;");
+            lines.add(label);
+            label.setMaxWidth(1000);
+            pseudoBox.getChildren().add(label);
+        }
 		graph = new Graph(false);
 		createUGraph.setOnMouseEntered(event -> {
 			createUGraph.setStyle("-fx-background-color: blue");
@@ -762,8 +772,8 @@ public class SceneController implements Initializable {
 		if(mode == 0) {
 			Vertex temp = getVertex(e);
 			if(temp == null) {
-				System.out.println(e.getX());
-				System.out.println(e.getY());
+				//Systemout.println(e.getX());
+				//Systemout.println(e.getY());
 				Vertex vertex = new Vertex();
 				vertex.setLayoutX(e.getX() - 18);
 				vertex.setLayoutY(e.getY() - 18);
@@ -801,13 +811,13 @@ public class SceneController implements Initializable {
 							
 							double tempX = c - a;
 							double alpha = Math.acos(tempX/dx);
-							System.out.println(alpha);
-							System.out.println(tempX);
-							System.out.println(dx);
-							System.out.println(a);
+							//Systemout.println(alpha);
+							//Systemout.println(tempX);
+							//Systemout.println(dx);
+							//Systemout.println(a);
 							double tempA = a + 18*Math.cos(alpha);
-							System.out.println(a);
-							System.out.println(a + " " + b + " " + c + " " + d);
+							//Systemout.println(a);
+							//Systemout.println(a + " " + b + " " + c + " " + d);
 							
 							double tempB = (b-d)/(a-c)*tempA + b - (b-d)/(a-c)*a;
 							double tempC = c + 18*Math.cos(Math.PI - alpha);
@@ -847,7 +857,7 @@ public class SceneController implements Initializable {
 							Edge removedEdge = listEdge.remove(pair);
 							myCanvas.getChildren().remove(removedEdge);
 						}
-						System.out.println("Delete Vertex successfully");
+						//Systemout.println("Delete Vertex successfully");
 				        noteText.setText("Note: " + "Delete vertex " + temp.getIdOfVertex() + " successfully");
 					});
 					contextMenu.getItems().addAll(item1);
@@ -876,7 +886,7 @@ public class SceneController implements Initializable {
 	}
 	
 	public void runDFS() {
-		System.out.println(listEdge);
+		//Systemout.println(listEdge);
 
 		DFSButton.setStyle("-fx-background-color: black");
 		PauseTransition pause = new PauseTransition(Duration.seconds(0.1));
@@ -886,7 +896,17 @@ public class SceneController implements Initializable {
 			mode = 1;
 			reset();
 			nextStepButton.setDisable(false);
-			Algorithm alg = new DFS(graph, pseudoCode, resText, noteText, listEdge, Integer.valueOf(DFSParam.getText()));
+			lines.get(0).setText("DFS(u)");
+			lines.get(0).setStyle("-fx-text-fill: #1b00e4; -fx-font-size: 14px; -fx-font-family: SansSerif;");
+			lines.get(1).setText("  visited[u] = true");
+			lines.get(1).setStyle("-fx-text-fill: #1b00e4; -fx-font-size: 14px; -fx-font-family: SansSerif;");
+			lines.get(2).setText("  for each neighbor v of u");
+			lines.get(2).setStyle("-fx-text-fill: #1b00e4; -fx-font-size: 14px;-fx-font-family: SansSerif;");
+			lines.get(3).setText("    if v is unvisited, DFS(v)");
+			lines.get(3).setStyle("-fx-text-fill: #1b00e4; -fx-font-size: 14px; -fx-font-family: SansSerif;");
+			lines.get(4).setText("    if v is visited, continue loop");
+			lines.get(4).setStyle("-fx-text-fill: #1b00e4; -fx-font-size: 14px; -fx-font-family: SansSerif;");
+			Algorithm alg = new DFS(graph, lines, resText, noteText, listEdge, Integer.valueOf(DFSParam.getText()));
 			context = new Context();
 			context.setAlgorithm(alg);
 			context.play();
@@ -899,7 +919,7 @@ public class SceneController implements Initializable {
 		PauseTransition pause = new PauseTransition(Duration.seconds(0.1));
 		pause.setOnFinished(e -> nextStepButton.setStyle("-fx-background-color: #2574cf"));
 		pause.play();
-		if(!context.getAlgorithm().runNextStep(listEdge, noteText, resText)) {
+		if(!context.getAlgorithm().runNextStep()) {
 			nextStepButton.setDisable(true);
 			mode = 2;
 	        noteText.setText("Note: Finish alg");
@@ -907,6 +927,7 @@ public class SceneController implements Initializable {
 	}
 	
 	public void createNewGraph() {
+		reset();
 		createUGraph.setStyle("-fx-background-color: black");
 		PauseTransition pause = new PauseTransition(Duration.seconds(0.1));
 		pause.setOnFinished(e -> createUGraph.setStyle("-fx-background-color: #2574cf"));
@@ -922,6 +943,7 @@ public class SceneController implements Initializable {
 	}
 	
 	public void createNewDirectedGraph() {
+		reset();
 		createDGraph.setStyle("-fx-background-color: black");
 		PauseTransition pause = new PauseTransition(Duration.seconds(0.1));
 		pause.setOnFinished(e -> createDGraph.setStyle("-fx-background-color: #2574cf"));
@@ -946,13 +968,29 @@ public class SceneController implements Initializable {
 	        noteText.setText("Note: Running topological sort alg");
 			nextStepButton.setDisable(false);
 			if(graph.getIsDirected()) {
-				Algorithm alg = new TopologicalSort(graph, pseudoCode, resText, noteText);
+				Algorithm alg = new TopologicalSort(graph, lines, resText, noteText);
 				context = new Context();
+				lines.get(0).setText("setup parameter for topological sort");
+				lines.get(0).setStyle("-fx-text-fill: #1b00e4; -fx-font-size: 14px;-fx-font-family: SansSerif;");				
+				lines.get(1).setText("while Q not empty");
+				lines.get(1).setStyle("-fx-text-fill: #1b00e4; -fx-font-size: 14px;-fx-font-family: SansSerif;");
+				lines.get(2).setText("  v <- dequeue Q and add v to topo");
+				lines.get(2).setStyle("-fx-text-fill: #1b00e4; -fx-font-size: 14px; -fx-font-family: SansSerif;");
+				lines.get(3).setText("  for each adj vertex av of v");
+				lines.get(3).setStyle("-fx-text-fill: #1b00e4; -fx-font-size: 14px; -fx-font-family: SansSerif;");
+				lines.get(4).setText("    indegree[av]--");
+				lines.get(4).setStyle("-fx-text-fill: #1b00e4; -fx-font-size: 14px; -fx-font-family: SansSerif;");
+				lines.get(5).setText("    if indegree[av] == 0 => add av to Q");
+				lines.get(5).setStyle("-fx-text-fill: #1b00e4; -fx-font-size: 14px;-fx-font-family: SansSerif;");
+				lines.get(6).setText("  Visited++");
+				lines.get(6).setStyle("-fx-text-fill: #1b00e4; -fx-font-size: 14px; -fx-font-family: SansSerif;");
+				lines.get(7).setText("if visited != V => error graph contains cycle");
+				lines.get(7).setStyle("-fx-text-fill: #1b00e4; -fx-font-size: 14px; -fx-font-family: SansSerif;");
 				context.setAlgorithm(alg);
 				context.play();
 				resText.setText("Result:");
 			}else {
-				System.out.println("Cannot run topological sort when it is undirected graph");
+				//Systemout.println("Cannot run topological sort when it is undirected graph");
 		        noteText.setText("Note: Cannot run topological sort when it is undirected graph");
 				nextStepButton.setDisable(true);
 				mode = 2;
@@ -1001,13 +1039,27 @@ public class SceneController implements Initializable {
 	        noteText.setText("Note: Running cut vertex and bridge finding alg");
 			nextStepButton.setDisable(false);
 			if(!graph.getIsDirected()) {
-				Algorithm alg = new CutVertexBridgeFinding(graph, pseudoCode, resText, noteText, listEdge);
+				Algorithm alg = new CutVertexBridgeFinding(graph, lines, resText, noteText, listEdge);
 				context = new Context();
 				context.setAlgorithm(alg);
+				lines.get(0).setText("try all vertex u, if u hasnt been visited, DFS(u)");
+				lines.get(0).setStyle("-fx-text-fill: #1b00e4; -fx-font-size: 14px;-fx-font-family: SansSerif;");				
+				lines.get(1).setText("DFS(u), initiate num[u] = low[u] = DFSCount");
+				lines.get(1).setStyle("-fx-text-fill: #1b00e4; -fx-font-size: 14px;-fx-font-family: SansSerif;");
+				lines.get(2).setText("  try all neighbor v of u");
+				lines.get(2).setStyle("-fx-text-fill: #1b00e4; -fx-font-size: 14px; -fx-font-family: SansSerif;");
+				lines.get(3).setText("    if v is free, DFS(v)");
+				lines.get(3).setStyle("-fx-text-fill: #1b00e4; -fx-font-size: 14px; -fx-font-family: SansSerif;");
+				lines.get(4).setText("      low[u] = min(low[u], low[v])-");
+				lines.get(4).setStyle("-fx-text-fill: #1b00e4; -fx-font-size: 14px; -fx-font-family: SansSerif;");
+				lines.get(5).setText("      check the condition");
+				lines.get(5).setStyle("-fx-text-fill: #1b00e4; -fx-font-size: 14px;-fx-font-family: SansSerif;");
+				lines.get(6).setText("    else low[u] = min(low[u], num[v])");
+				lines.get(6).setStyle("-fx-text-fill: #1b00e4; -fx-font-size: 14px; -fx-font-family: SansSerif;");
 				context.play();
 				resText.setText("Result:");
 			}else {
-				System.out.println("Cannot run cut vertext and bridge finding when it is directed graph");
+//				//Systemout.println("Cannot run cut vertext and bridge finding when it is directed graph");
 		        noteText.setText("Note: Cannot run cut vertext and bridge finding when it is directed graph");
 				nextStepButton.setDisable(true);
 				mode = 2;
@@ -1017,9 +1069,13 @@ public class SceneController implements Initializable {
 		}
 	}
 	public void reset() {
+		nextStepButton.setDisable(true);
 		resetColor();
 		resText.setText("");
-        pseudoCode.setText("");
+		for(Label element : lines) {
+			element.setText(" ");
+			element.setStyle("");
+		}
 	}
 	private void resetColor() {
 		for(Edge ed: listEdge.values()) {

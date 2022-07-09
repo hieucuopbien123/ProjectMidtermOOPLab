@@ -1,4 +1,4 @@
-package application.components.edge;
+package application.components.graph;
 
 import javafx.beans.InvalidationListener;
 import javafx.beans.property.DoubleProperty;
