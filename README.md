@@ -3,4 +3,4 @@
 <div>To run: Install JavaFX in your editor -> add JavaFX lib to your project -> run project normally</div>
 
 <div>Class Diagram with module is the file "FullClassDiagramWithModule.png"</div>
-<div>Report for project is the file report.pdf</div>
+<div>Report for project is the file "report.pdf"</div>
