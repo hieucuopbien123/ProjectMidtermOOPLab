@@ -1,5 +1,6 @@
 # ProjectMidtermOOPLab
-<div>Project for Group 3 - OOP Lab - 20212</div>
+
+## Project for Group 3 - OOP Lab - 20212
 <div>Class Diagram with module is in the folder "Class Diagram"</div>
 <div>Report for project is the file "report_Group3.pdf"</div>
 
