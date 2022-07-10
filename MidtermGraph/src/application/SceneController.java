@@ -19,7 +19,9 @@ import application.components.graph.VertexController;
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
+import javafx.animation.Timeline;
 import javafx.animation.Transition;
 import javafx.css.Size;
 import javafx.fxml.FXML;
@@ -41,6 +43,9 @@ import javafx.util.Duration;
 import javafx.util.Pair;
 
 public class SceneController implements Initializable {
+	private Timeline timeline;
+	@FXML
+	private Button autoRunButton;
 	@FXML
 	private AnchorPane myCanvas;
 	@FXML
@@ -766,6 +771,12 @@ public class SceneController implements Initializable {
 		nextStepButton.setOnMouseExited(event -> {
 			nextStepButton.setStyle("-fx-background-color: #2574cf");
 	    });
+		autoRunButton.setOnMouseEntered(event -> {
+			autoRunButton.setStyle("-fx-background-color: blue");
+	    });
+		autoRunButton.setOnMouseExited(event -> {
+			autoRunButton.setStyle("-fx-background-color: #2574cf");
+	    });
 	}
 	
 	public void handleMouseOnCanvas(MouseEvent e) {
@@ -896,6 +907,7 @@ public class SceneController implements Initializable {
 			mode = 1;
 			reset();
 			nextStepButton.setDisable(false);
+			autoRunButton.setDisable(false);
 			lines.get(0).setText("DFS(u)");
 			lines.get(0).setStyle("-fx-text-fill: #1b00e4; -fx-font-size: 14px; -fx-font-family: SansSerif;");
 			lines.get(1).setText("  visited[u] = true");
@@ -924,6 +936,28 @@ public class SceneController implements Initializable {
 			mode = 2;
 	        noteText.setText("Note: Finish alg");
 		}
+	}
+	public void autoRunAll() {
+		autoRunButton.setStyle("-fx-background-color: black");
+		PauseTransition pause = new PauseTransition(Duration.seconds(0.1));
+		pause.setOnFinished(e -> autoRunButton.setStyle("-fx-background-color: #2574cf"));
+		pause.play();
+		if(timeline != null)
+			timeline.stop();
+		timeline = new Timeline(new KeyFrame(Duration.millis(200), e -> {
+	    	if(context.getAlgorithm().runNextStep()){
+	    		return;
+	    	}
+	    	if(!context.getAlgorithm().runNextStep()) {
+				nextStepButton.setDisable(true);
+				autoRunButton.setDisable(true);
+				mode = 2;
+		        noteText.setText("Note: Finish alg");
+		        timeline.stop();
+			}
+	    }));
+	    timeline.setCycleCount(Animation.INDEFINITE); // loop forever
+	    timeline.play();
 	}
 	
 	public void createNewGraph() {
@@ -967,6 +1001,7 @@ public class SceneController implements Initializable {
 			reset();
 	        noteText.setText("Note: Running topological sort alg");
 			nextStepButton.setDisable(false);
+			autoRunButton.setDisable(false);
 			if(graph.getIsDirected()) {
 				Algorithm alg = new TopologicalSort(graph, lines, resText, noteText);
 				context = new Context();
@@ -993,6 +1028,7 @@ public class SceneController implements Initializable {
 				//Systemout.println("Cannot run topological sort when it is undirected graph");
 		        noteText.setText("Note: Cannot run topological sort when it is undirected graph");
 				nextStepButton.setDisable(true);
+				autoRunButton.setDisable(true);
 				mode = 2;
 			}
 		} else {
@@ -1038,6 +1074,7 @@ public class SceneController implements Initializable {
 			reset();
 	        noteText.setText("Note: Running cut vertex and bridge finding alg");
 			nextStepButton.setDisable(false);
+			autoRunButton.setDisable(false);
 			if(!graph.getIsDirected()) {
 				Algorithm alg = new CutVertexBridgeFinding(graph, lines, resText, noteText, listEdge);
 				context = new Context();
@@ -1062,6 +1099,7 @@ public class SceneController implements Initializable {
 //				//Systemout.println("Cannot run cut vertext and bridge finding when it is directed graph");
 		        noteText.setText("Note: Cannot run cut vertext and bridge finding when it is directed graph");
 				nextStepButton.setDisable(true);
+				autoRunButton.setDisable(true);
 				mode = 2;
 			}
 		} else {
@@ -1070,6 +1108,7 @@ public class SceneController implements Initializable {
 	}
 	public void reset() {
 		nextStepButton.setDisable(true);
+		autoRunButton.setDisable(true);
 		resetColor();
 		resText.setText("");
 		for(Label element : lines) {

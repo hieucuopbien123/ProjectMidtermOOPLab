@@ -13,7 +13,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="806.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SceneController">
    <left>
-      <VBox spacing="20.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
+      <VBox spacing="15.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="createUGraph" mnemonicParsing="false" onAction="#createNewGraph" style="-fx-border-radius: 20; -fx-background-color: #2574cf;" text="Create a new undirected graph" textFill="WHITE">
                <padding>
@@ -35,8 +35,12 @@
             <Line endX="100.0" startX="-100.0" />
             <VBox spacing="5.0">
                <children>
-                  <TextField fx:id="from" promptText="From" />
-                  <TextField fx:id="to" promptText="To" />
+                  <HBox prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <TextField fx:id="from" promptText="From" />
+                        <TextField fx:id="to" promptText="To" />
+                     </children>
+                  </HBox>
                   <Button fx:id="removeE" onAction="#removeEdge" style="-fx-border-radius: 20; -fx-background-color: #2574cf;" text="Remove this edge" textFill="WHITE">
                      <font>
                         <Font name="SansSerif Regular" size="15.0" />
@@ -48,19 +52,19 @@
                </children>
             </VBox>
             <Line endX="100.0" startX="-100.0" />
-            <VBox spacing="5.0">
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
                <children>
-                  <TextField fx:id="DFSParam" style="-fx-background-color: white;" text="1" />
                   <Button fx:id="DFSButton" mnemonicParsing="false" onAction="#runDFS" style="-fx-background-color: #2574cf;" text="Run DFS" textFill="WHITE">
                      <font>
                         <Font name="SansSerif Regular" size="15.0" />
                      </font>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding></Button>
+                     </padding>
+                  </Button>
+                  <TextField fx:id="DFSParam" prefHeight="25.0" prefWidth="94.0" style="-fx-background-color: white;" text="1" HBox.hgrow="NEVER" />
                </children>
-            </VBox>
-            <Line endX="100.0" startX="-100.0" />
+            </HBox>
             <Button fx:id="RunT" mnemonicParsing="false" onAction="#runTopo" style="-fx-background-color: #2574cf;" text="Run Topological Sort" textFill="WHITE">
                <font>
                   <Font name="SansSerif Regular" size="15.0" />
@@ -68,7 +72,6 @@
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding></Button>
-            <Line endX="100.0" startX="-100.0" />
             <Button fx:id="RunC" mnemonicParsing="false" onAction="#runCutVertex" style="-fx-background-color: #2574cf;" text="Run Cut Vertex" textFill="WHITE">
                <font>
                   <Font name="SansSerif Regular" size="15.0" />
@@ -88,6 +91,14 @@
                      </padding></Button>
                </children>
             </HBox>
+            <Button fx:id="autoRunButton" disable="true" mnemonicParsing="false" onAction="#autoRunAll" style="-fx-background-color: #2574cf;" text="Auto run to the end" textFill="WHITE">
+               <font>
+                  <Font name="SansSerif Regular" size="15.0" />
+               </font>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </Button>
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
