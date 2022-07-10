@@ -3,4 +3,5 @@
     <fullyQualifiedTypeName name="javafx.scene.layout.VBox"/>
     <fullyQualifiedTypeName name="javafx.animation.Timeline"/>
     <fullyQualifiedTypeName name="javafx.animation.KeyFrame"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.Slider"/>
 </qualifiedTypeNameHistroy>
