@@ -30,6 +30,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -44,6 +45,8 @@ import javafx.util.Pair;
 
 public class SceneController implements Initializable {
 	private Timeline timeline;
+	@FXML
+	private Slider slider;
 	@FXML
 	private Button autoRunButton;
 	@FXML
@@ -931,6 +934,10 @@ public class SceneController implements Initializable {
 		PauseTransition pause = new PauseTransition(Duration.seconds(0.1));
 		pause.setOnFinished(e -> nextStepButton.setStyle("-fx-background-color: #2574cf"));
 		pause.play();
+		if(timeline != null && timeline.getStatus() == Animation.Status.RUNNING) {
+			timeline.stop();
+			return;
+		}
 		if(!context.getAlgorithm().runNextStep()) {
 			nextStepButton.setDisable(true);
 			mode = 2;
@@ -942,9 +949,10 @@ public class SceneController implements Initializable {
 		PauseTransition pause = new PauseTransition(Duration.seconds(0.1));
 		pause.setOnFinished(e -> autoRunButton.setStyle("-fx-background-color: #2574cf"));
 		pause.play();
-		if(timeline != null)
+		if(timeline != null && timeline.getStatus() == Animation.Status.RUNNING)
 			timeline.stop();
-		timeline = new Timeline(new KeyFrame(Duration.millis(200), e -> {
+		int speed = (int) ((100 - slider.getValue())/100*260 + 140);
+		timeline = new Timeline(new KeyFrame(Duration.millis(speed), e -> {
 	    	if(context.getAlgorithm().runNextStep()){
 	    		return;
 	    	}
@@ -958,6 +966,12 @@ public class SceneController implements Initializable {
 	    }));
 	    timeline.setCycleCount(Animation.INDEFINITE); // loop forever
 	    timeline.play();
+	}
+	
+	public void sliderAction() {
+		if(timeline != null)
+			timeline.stop();
+		noteText.setText("Note: click \"Auto run to the end\" to run with new speed");
 	}
 	
 	public void createNewGraph() {
